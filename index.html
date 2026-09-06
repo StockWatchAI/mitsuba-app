@@ -1,103 +1,760 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>みつば / Mitsuba — サポート</title>
+<title>Mitsuba</title>
+<meta name="description" content="Mitsuba is a cozy gratitude journal for iPhone. Write three good things in about ninety seconds, and a little plant grows. No streaks, no guilt, no account.">
+<meta property="og:title" content="Mitsuba — Three good things. That's the whole app.">
+<meta property="og:description" content="A ninety-second gratitude journal with a companion and a garden. No streaks. No guilt. Nothing leaves your iPhone.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/screens/growth-moment.jpg">
+<meta name="theme-color" content="#F7F5ED">
+<link rel="icon" href="assets/appicon.png">
+<link rel="apple-touch-icon" href="assets/appicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap">
 <style>
-/* みつば 公開ページ共通スタイル（アプリと同じくすみパステル） */
+/* ---- Mitsuba design tokens (docs/mitsuba-design/design/tokens/design-tokens.json) ---- */
 :root {
-  --cream: #FBF7F2;
-  --surface: #FFFFFF;
-  --milk-pink: #F3D9DC;
-  --sage: #B7C9AE;
-  --cocoa: #5B4E48;
-  --mist: #968780;
+  --paper: #F7F5ED;
+  --surface: #FFFDF7;
+  --muted: #EDEFE3;
+  --ink: #34483B;
+  --ink-2: #626E63;
+  --accent: #4D684D;
+  --on-accent: #FFFFFF;
+  --line: #D5DDCB;
+  --hina: #F0D58C;
+  --hina-soft: #FBF1D2;
+  --night: #24404A;
+  --night-deep: #182B32;
+  --night-ink: #F2F2E6;
+  --night-ink-2: #BBC8B7;
+  --bezel: #2A3A32;
+  --shadow: 0 18px 50px rgba(52, 72, 59, 0.14);
+  --shadow-soft: 0 6px 24px rgba(52, 72, 59, 0.08);
+  --r-card: 24px;
+  --r-hero: 26px;
+  --r-control: 17px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  color-scheme: light;
 }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #17241F;
+    --surface: #24342B;
+    --muted: #304238;
+    --ink: #F2F2E6;
+    --ink-2: #BBC8B7;
+    --accent: #C0D1A6;
+    --on-accent: #203523;
+    --line: #516653;
+    --hina-soft: #3A3D2B;
+    --night: #10201F;
+    --night-deep: #0B1716;
+    --bezel: #3D5045;
+    --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    --shadow-soft: 0 6px 24px rgba(0, 0, 0, 0.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #17241F;
+  --surface: #24342B;
+  --muted: #304238;
+  --ink: #F2F2E6;
+  --ink-2: #BBC8B7;
+  --accent: #C0D1A6;
+  --on-accent: #203523;
+  --line: #516653;
+  --hina-soft: #3A3D2B;
+  --night: #10201F;
+  --night-deep: #0B1716;
+  --bezel: #3D5045;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  --shadow-soft: 0 6px 24px rgba(0, 0, 0, 0.25);
+  color-scheme: dark;
+}
+
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  padding: 32px 20px 64px;
-  background: var(--cream);
-  color: var(--cocoa);
-  font-family: "Hiragino Maru Gothic ProN", "Zen Maru Gothic", "Nunito",
-    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  line-height: 1.9;
-  font-size: 16px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Nunito", "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Apple SD Gothic Neo", "PingFang TC", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
-main { max-width: 720px; margin: 0 auto; }
-h1 { font-size: 26px; margin: 0 0 8px; }
-h2 { font-size: 20px; margin: 48px 0 8px; padding-top: 24px; border-top: 1px solid rgba(150,135,128,.25); }
-h3 { font-size: 16px; margin: 24px 0 4px; }
-p { margin: 0 0 12px; }
-a { color: #A8737F; }
-.lead { color: var(--mist); margin-bottom: 32px; }
-.updated { color: var(--mist); font-size: 14px; }
-.card {
-  background: var(--surface);
-  border-radius: 20px;
-  padding: 20px 24px;
-  margin: 16px 0 32px;
+:lang(ja) body, :lang(ko) body, :lang(zh-Hant) body { font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Apple SD Gothic Neo", "PingFang TC", "Nunito", system-ui, sans-serif; }
+img { max-width: 100%; display: block; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+
+h1, h2, h3 { font-weight: 800; line-height: 1.2; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.4rem); }
+h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0; }
+.lead { font-size: 1.15rem; color: var(--ink-2); max-width: 34em; }
+.eyebrow {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
 }
-nav { margin: 0 0 32px; font-size: 14px; }
-nav a { margin-right: 16px; }
-footer { margin-top: 64px; color: var(--mist); font-size: 13px; }
+:lang(ja) .eyebrow, :lang(ko) .eyebrow, :lang(zh-Hant) .eyebrow { letter-spacing: 0.08em; text-transform: none; font-size: 0.85rem; }
+:lang(ja) h1, :lang(ko) h1, :lang(zh-Hant) h1 { font-size: clamp(1.8rem, 4.4vw, 2.9rem); letter-spacing: 0; max-width: none; line-height: 1.3; }
+:lang(ja) h2, :lang(ko) h2, :lang(zh-Hant) h2 { letter-spacing: 0; line-height: 1.35; }
+.wrap { width: min(1080px, 100% - 48px); margin-inline: auto; }
+@media (max-width: 600px) { .wrap { width: min(1080px, 100% - 32px); } }
+section { padding-block: 88px; }
+@media (max-width: 720px) { section { padding-block: 64px; } }
+.stack { display: grid; gap: 18px; }
+
+/* ---- nav ---- */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+}
+.nav .wrap { display: flex; align-items: center; gap: 18px; min-height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+.brand img { width: 26px; height: 26px; }
+.nav-links { display: flex; gap: 22px; margin-left: auto; font-weight: 600; font-size: 0.95rem; }
+.nav-links a { color: var(--ink-2); text-decoration: none; }
+.nav-links a:hover { color: var(--ink); }
+@media (max-width: 760px) { .nav-links { display: none; } }
+.lang { display: flex; gap: 2px; margin-left: auto; }
+.nav .lang { margin-left: 18px; }
+@media (max-width: 760px) { .nav .lang { margin-left: auto; } }
+.lang button {
+  font: inherit; font-size: 0.8rem; font-weight: 700; color: var(--ink-2);
+  background: none; border: 1px solid transparent; border-radius: 999px; padding: 4px 10px; cursor: pointer;
+}
+.lang button[aria-current="true"] { color: var(--accent); border-color: var(--line); background: var(--surface); }
+.lang button:hover { color: var(--ink); }
+
+/* ---- buttons ---- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 54px; padding: 0 26px; border-radius: 999px;
+  font-weight: 700; font-size: 1.02rem; text-decoration: none; cursor: pointer; border: 0;
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), background 0.3s;
+}
+.btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-soft); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn-primary svg { width: 18px; height: 18px; fill: currentColor; }
+.btn-ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+.btn-ghost:hover { border-color: var(--accent); }
+.btn-sm { min-height: 40px; padding: 0 16px; font-size: 0.9rem; }
+.cta-note { font-size: 0.9rem; color: var(--ink-2); }
+
+/* ---- hero ---- */
+.hero { padding-block: 56px 80px; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; gap: 44px; } }
+.hero h1 { max-width: 12em; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 8px; }
+.hero-visual { position: relative; display: grid; place-items: center; }
+.hero-visual .phone { max-width: 300px; }
+.hero-hina { position: absolute; width: 150px; left: -8px; bottom: 16px; z-index: 2; filter: drop-shadow(0 10px 20px rgba(52,72,59,0.18)); animation: bob 5s var(--ease) infinite alternate; }
+.hero-bubble {
+  position: absolute; z-index: 2; left: 8px; bottom: 156px;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+  border-radius: 20px 20px 20px 6px; padding: 10px 16px; font-weight: 700; font-size: 0.95rem;
+  box-shadow: var(--shadow-soft); max-width: 220px;
+}
+@media (max-width: 860px) { .hero-hina { width: 120px; left: 0; } .hero-bubble { left: 12px; bottom: 132px; } }
+@keyframes bob { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+
+/* ---- phone frame ---- */
+.phone {
+  background: var(--bezel); border-radius: 44px; padding: 9px; box-shadow: var(--shadow);
+  width: 100%; max-width: 320px;
+}
+.phone img { border-radius: 36px; width: 100%; height: auto; aspect-ratio: 1206 / 2622; object-fit: cover; }
+.phone-sm { max-width: 260px; }
+.phone-sm { border-radius: 38px; }
+.phone-sm img { border-radius: 30px; }
+
+/* ---- steps ---- */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; gap: 44px; } }
+.step { display: grid; gap: 18px; justify-items: start; }
+.step .phone { justify-self: center; }
+.step-time {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-variant-numeric: tabular-nums; font-weight: 800; font-size: 0.85rem; color: var(--accent);
+  background: var(--muted); border-radius: 999px; padding: 4px 12px;
+}
+.step-time::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.step p { color: var(--ink-2); }
+.after-note { margin-top: 44px; padding: 22px 26px; border-left: 3px solid var(--hina); background: var(--hina-soft); border-radius: 0 var(--r-control) var(--r-control) 0; max-width: 40em; color: var(--ink); }
+
+/* ---- night section ---- */
+.night { background: linear-gradient(180deg, var(--night) 0%, var(--night-deep) 100%); color: var(--night-ink); position: relative; }
+.night .eyebrow { color: var(--hina); }
+.night .lead, .night p { color: var(--night-ink-2); }
+.night h2 { color: var(--night-ink); }
+.night .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; position: relative; }
+@media (max-width: 860px) { .night .wrap { grid-template-columns: 1fr; } }
+.night-phones { display: flex; gap: 20px; justify-content: center; align-items: flex-end; }
+.night-phones .phone { box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+.night-phones .phone:last-child { transform: translateY(40px); }
+@media (max-width: 520px) { .night-phones { flex-direction: column; align-items: center; } .night-phones .phone:last-child { transform: none; } }
+.night-list { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 14px; }
+.night-list li { display: flex; gap: 14px; align-items: flex-start; color: var(--night-ink); }
+.night-list li::before { content: ""; flex: 0 0 22px; height: 22px; margin-top: 3px; background: url("assets/svg/brand_leaf.svg") center / contain no-repeat; opacity: 0.9; }
+.stars { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.stars i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--night-ink); opacity: 0.4; }
+.moon { position: absolute; right: 8%; top: 48px; width: 56px; height: 56px; opacity: 0.9; }
+@media (max-width: 860px) { .moon { width: 40px; height: 40px; right: 6%; top: 28px; } }
+.quote-card {
+  margin-top: 26px; padding: 18px 22px; border-radius: var(--r-card);
+  background: color-mix(in srgb, var(--night-ink) 8%, transparent); border: 1px solid color-mix(in srgb, var(--night-ink) 14%, transparent);
+}
+.quote-card .q { font-weight: 800; font-size: 1.25rem; color: var(--night-ink); }
+.quote-card .qs { font-size: 0.85rem; margin-top: 6px; }
+
+/* ---- garden ---- */
+.garden .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+@media (max-width: 860px) { .garden .wrap { grid-template-columns: 1fr; } }
+.garden .phone { justify-self: center; max-width: 300px; }
+.growth {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; align-items: end;
+  margin-top: 28px; padding: 22px 14px 14px; border-radius: var(--r-card);
+  background: var(--muted);
+}
+.growth figure { margin: 0; display: grid; justify-items: center; gap: 8px; }
+.growth img { width: 100%; max-width: 72px; }
+.growth figcaption { font-size: 0.72rem; font-weight: 700; color: var(--ink-2); text-align: center; }
+.growth figure:last-child figcaption { color: var(--accent); }
+@media (max-width: 480px) { .growth { grid-template-columns: repeat(7, 1fr); gap: 2px; padding: 14px 8px 10px; } .growth figcaption { font-size: 0.6rem; } }
+.plants { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 26px; }
+.plants figure { margin: 0; width: 66px; display: grid; justify-items: center; gap: 4px; }
+.plants img { width: 56px; }
+.plants figcaption { font-size: 0.68rem; color: var(--ink-2); text-align: center; }
+.lookback {
+  margin-top: 28px; padding: 18px 22px; border-radius: var(--r-card); background: var(--surface); border: 1px solid var(--line);
+  display: grid; gap: 6px; max-width: 30em;
+}
+.lookback .lb-head { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--ink-2); }
+.lookback .lb-body { font-weight: 700; font-size: 1.05rem; }
+.lookback .lb-foot { font-size: 0.85rem; color: var(--accent); font-weight: 700; }
+
+/* ---- companions ---- */
+.companions { background: var(--muted); }
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+@media (max-width: 760px) { .trio { grid-template-columns: 1fr; } }
+.companion {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card);
+  padding: 28px 24px 24px; display: grid; gap: 12px; justify-items: center; text-align: center;
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.companion:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+.companion img { width: 132px; height: 132px; }
+.companion h3 { font-size: 1.3rem; }
+.companion .tag { color: var(--ink-2); font-size: 0.95rem; margin-top: -8px; }
+.bubble {
+  margin-top: 6px; background: var(--muted); color: var(--ink); border-radius: 18px; padding: 10px 16px; font-size: 0.95rem; position: relative;
+}
+.bubble::before { content: ""; position: absolute; top: -7px; left: 50%; margin-left: -6px; border: 6px solid transparent; border-top: 0; border-bottom-color: var(--muted); }
+.switch-note { text-align: center; margin-top: 24px; color: var(--ink-2); font-size: 0.95rem; }
+
+/* ---- privacy ---- */
+.privacy .wrap { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: start; }
+@media (max-width: 860px) { .privacy .wrap { grid-template-columns: 1fr; } }
+.facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.facts li { display: grid; grid-template-columns: 36px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.facts svg { width: 26px; height: 26px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }
+.facts b { display: block; font-weight: 800; }
+.facts span { color: var(--ink-2); font-size: 0.95rem; }
+
+/* ---- faq ---- */
+.faq-list { display: grid; gap: 10px; margin-top: 36px; max-width: 720px; }
+details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-control); padding: 0 20px; }
+summary { cursor: pointer; font-weight: 700; padding: 16px 0; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--accent); font-weight: 800; flex: 0 0 auto; }
+details[open] summary::after { content: "–"; }
+details p { padding: 0 0 18px; color: var(--ink-2); }
+
+/* ---- closing cta ---- */
+.closing { text-align: center; padding-block: 72px 96px; }
+.closing .wrap { display: grid; justify-items: center; gap: 18px; }
+.closing img.icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: var(--shadow-soft); }
+.closing h2 { max-width: 18em; }
+
+/* ---- footer ---- */
+footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--ink-2); font-size: 0.9rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; }
+footer a { color: var(--ink-2); }
+footer .lang { margin-left: auto; }
+
+.shot-note { font-size: 0.8rem; color: var(--ink-2); margin-top: 8px; display: none; }
+:lang(ja) .shot-note, :lang(ko) .shot-note, :lang(zh-Hant) .shot-note { display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-hina { animation: none; }
+  .btn, .companion { transition: none; }
+}
 </style>
 </head>
 <body>
-<main>
-  <h1>みつば / Mitsuba</h1>
-  <p class="lead">今日のいいこと3つ。 / Three good things a day.</p>
-  <nav>
-    <a href="#ja">日本語</a><a href="#en">English</a><a href="#ko">한국어</a><a href="#zh">繁體中文</a>
-    <a href="privacy.html">プライバシーポリシー / Privacy</a>
-  </nav>
 
-  <h2 id="ja">サポート（日本語）</h2>
-  <div class="card">
-    <h3>お問い合わせ</h3>
-    <p>不具合の報告・ご要望は、こちらまでお願いします。<br><a href="mailto:sh.hirokawa@icloud.com">sh.hirokawa@icloud.com</a></p>
-    <h3>よくある質問</h3>
-    <p><strong>書いた内容はどこに保存されますか？</strong><br>お使いの iPhone の中だけです。通信を一切行わないため、どこにも送信されません。</p>
-    <p><strong>機種変更したら記録は引き継げますか？</strong><br>いまのバージョンでは自動の引き継ぎはありません。「設定 → JSON で書き出す」でお手元に保存しておいてください。</p>
-    <p><strong>1日書けなかったら、植物はどうなりますか？</strong><br>何も起きません。段階が下がることも、枯れることもありません。次に書いた日にまた1段階育ちます。</p>
-    <p><strong>記録をすべて消したい</strong><br>「設定 → ぜんぶ消す」から消せます。確認が2回出ます。</p>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/svg/brand_leaf.svg" alt="">Mitsuba</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#how" data-i18n="nav.how">How a night goes</a>
+      <a href="#garden" data-i18n="nav.garden">The garden</a>
+      <a href="#companions" data-i18n="nav.companions">Companions</a>
+      <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" lang="en">EN</button>
+      <button type="button" data-lang="ja" lang="ja">日本語</button>
+      <button type="button" data-lang="ko" lang="ko">한국어</button>
+      <button type="button" data-lang="zh-Hant" lang="zh-Hant">繁體</button>
+    </div>
   </div>
+</header>
 
-  <h2 id="en">Support (English)</h2>
-  <div class="card">
-    <h3>Contact</h3>
-    <p>For bugs and requests, please write to:<br><a href="mailto:sh.hirokawa@icloud.com">sh.hirokawa@icloud.com</a></p>
-    <h3>FAQ</h3>
-    <p><strong>Where is what I write stored?</strong><br>Only on your iPhone. The app makes no network requests, so nothing is ever sent anywhere.</p>
-    <p><strong>Can I move my records to a new phone?</strong><br>Not automatically in this version. Use Settings → “Export as JSON” to keep a copy.</p>
-    <p><strong>What happens if I miss a day?</strong><br>Nothing. The plant never goes backwards and never dies. The next day you write, it grows one more step.</p>
-    <p><strong>How do I delete everything?</strong><br>Settings → “Delete everything”. It asks twice.</p>
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="stack">
+      <p class="eyebrow" data-i18n="hero.eyebrow">A gratitude journal for people who've quit gratitude journals</p>
+      <h1 data-i18n="hero.title">Three good things. That's the whole app.</h1>
+      <p class="lead" data-i18n="hero.lead">About ninety seconds before bed. A companion asks what went well today, you answer, and a little plant in your garden grows. Miss a day and nothing happens. No streaks. No guilt.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary js-cta" href="https://apps.apple.com/app/id6808511381">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.9 1.2 1.9 2.6 3.2 2.5 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.3-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.9-1.1-2.9-4zM14 5.3c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg>
+          <span data-i18n="hero.cta">Download on the App Store</span>
+        </a>
+        <span class="cta-note" data-i18n="hero.note">Free · No account · Works in airplane mode</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone"><img src="assets/screens/growth-moment.jpg" alt="Mitsuba after an evening entry: Hina celebrating in a night garden, the daisy's first stage filled in, and the line “It grew! You did that.”" width="660" height="1434" fetchpriority="high"></div>
+      <img class="hero-hina" src="assets/svg/char_hina_wave.svg" alt="" width="150" height="150">
+      <div class="hero-bubble" data-i18n="hero.bubble">Anything nice happen today? Even a tiny thing.</div>
+    </div>
   </div>
+</section>
 
-  <h2 id="ko">지원 (한국어)</h2>
-  <div class="card">
-    <h3>문의</h3>
-    <p>버그 제보와 요청은 이쪽으로 부탁드립니다.<br><a href="mailto:sh.hirokawa@icloud.com">sh.hirokawa@icloud.com</a></p>
-    <h3>자주 묻는 질문</h3>
-    <p><strong>적은 내용은 어디에 저장되나요?</strong><br>사용 중인 iPhone 안에만 저장됩니다. 통신을 전혀 하지 않으므로 어디로도 전송되지 않습니다.</p>
-    <p><strong>기기를 바꾸면 기록을 옮길 수 있나요?</strong><br>현재 버전에는 자동 이전 기능이 없습니다. ‘설정 → JSON으로 내보내기’로 복사본을 보관해 주세요.</p>
-    <p><strong>하루 못 쓰면 식물은 어떻게 되나요?</strong><br>아무 일도 일어나지 않습니다. 단계가 내려가거나 시들어 죽지 않습니다. 다음에 쓰는 날 다시 한 단계 자랍니다.</p>
-    <p><strong>기록을 전부 지우고 싶어요</strong><br>‘설정 → 전부 삭제’에서 지울 수 있습니다. 확인이 두 번 나옵니다.</p>
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="how.eyebrow">How a night goes</p>
+    <h2 data-i18n="how.title">You never stare at a blank page.</h2>
+    <p class="lead" style="margin-top:14px" data-i18n="how.lead">Open the app and the question is already there. Answer once, twice, three times if you have them. Then put your phone down.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="phone phone-sm"><img src="assets/screens/chat-open.jpg" alt="Chat screen. Hina says: Hi! I'm Hina. So happy you're here. Anything nice happen today? Even a tiny thing." loading="lazy" width="660" height="1434"></div>
+        <span class="step-time">0:00</span>
+        <h3 data-i18n="how.s1.title">Hina asks first.</h3>
+        <p data-i18n="how.s1.body">The first thing on screen is a question, not an empty box. Your companion asks for one good thing, then the next.</p>
+      </div>
+      <div class="step">
+        <div class="phone phone-sm"><img src="assets/screens/chat-third-typing.jpg" alt="Chat screen with two entries saved: coffee that was exactly right, and the cat asleep on warm laundry. A third is being typed." loading="lazy" width="660" height="1434"></div>
+        <span class="step-time">0:40</span>
+        <h3 data-i18n="how.s2.title">Answer in a sentence.</h3>
+        <p data-i18n="how.s2.body">Coffee that was exactly right. The cat on the warm laundry. Your sister calling for no reason. One is plenty. Three is the habit.</p>
+      </div>
+      <div class="step">
+        <div class="phone phone-sm"><img src="assets/screens/growth-moment.jpg" alt="Growth moment: Hina cheering, the daisy moves from seed to sprout, and she says It grew! You did that." loading="lazy" width="660" height="1434"></div>
+        <span class="step-time">1:30</span>
+        <h3 data-i18n="how.s3.title">Watch it grow.</h3>
+        <p data-i18n="how.s3.body">Every day you write, your plant grows one stage, right in front of you. Hina says so. Then you're done until tomorrow.</p>
+      </div>
+    </div>
+
+    <p class="after-note" data-i18n="how.note">Afterward there's one optional tap: how do you feel? Five faces and a Skip button. Your companion answers either way.</p>
+    <p class="shot-note" data-i18n="shot.note">Screens shown in English. The app is fully localized.</p>
   </div>
+</section>
 
-  <h2 id="zh">支援（繁體中文）</h2>
-  <div class="card">
-    <h3>聯絡方式</h3>
-    <p>問題回報與建議請寄到：<br><a href="mailto:sh.hirokawa@icloud.com">sh.hirokawa@icloud.com</a></p>
-    <h3>常見問題</h3>
-    <p><strong>寫下的內容存在哪裡？</strong><br>只存在你的 iPhone 裡。本 App 完全不連網，不會傳送到任何地方。</p>
-    <p><strong>換手機後可以帶走記錄嗎？</strong><br>目前版本沒有自動轉移。請用「設定 → 匯出為 JSON」保留一份備份。</p>
-    <p><strong>有一天沒寫，植物會怎樣？</strong><br>什麼都不會發生。階段不會倒退，也不會枯死。下次寫的那天會再長一個階段。</p>
-    <p><strong>想刪除全部記錄</strong><br>可從「設定 → 全部刪除」清除，會確認兩次。</p>
+<section class="night" id="hard">
+  <div class="stars" aria-hidden="true">
+    <i style="left:6%;top:14%"></i><i style="left:14%;top:62%"></i><i style="left:23%;top:28%"></i><i style="left:31%;top:80%"></i>
+    <i style="left:44%;top:10%"></i><i style="left:52%;top:46%"></i><i style="left:61%;top:22%"></i><i style="left:73%;top:74%"></i>
+    <i style="left:84%;top:36%"></i><i style="left:93%;top:66%"></i><i style="left:38%;top:58%;width:2px;height:2px"></i><i style="left:67%;top:88%;width:2px;height:2px"></i>
+    <svg class="moon" viewBox="0 0 56 56" aria-hidden="true"><path d="M34 4a24 24 0 1 0 18 40A20 20 0 0 1 34 4z" fill="#F3E9BF"/></svg>
   </div>
+  <div class="wrap">
+    <div class="stack">
+      <p class="eyebrow" data-i18n="hard.eyebrow">For the days you'd rather not write</p>
+      <h2 data-i18n="hard.title">There's a button for hard days.</h2>
+      <p class="lead" data-i18n="hard.lead">Tap “Today was hard” and Hina closes her eyes and sits with you. No entry needed. Nothing is taken away.</p>
+      <ul class="night-list">
+        <li data-i18n="hard.l1">Your plant never wilts, never dies, never resets.</li>
+        <li data-i18n="hard.l2">A day you skipped is a soft gray dot on the calendar. Not red, not an X.</li>
+        <li data-i18n="hard.l3">There is no streak counter anywhere in the app. Seven entries, whenever they happen, is what makes a plant bloom.</li>
+      </ul>
+      <div class="quote-card">
+        <p class="q" data-i18n="hard.q">“Welcome back. Start where you are.”</p>
+        <p class="qs" data-i18n="hard.qs">The whole greeting after a few days away. It doesn't count the days.</p>
+      </div>
+    </div>
+    <div class="night-phones">
+      <div class="phone phone-sm"><img src="assets/screens/hard-day.jpg" alt="Hard day screen: Hina with her eyes closed. Take a moment to rest. Just showing up counts. Rest well." loading="lazy" width="660" height="1434"></div>
+      <div class="phone phone-sm"><img src="assets/screens/memories.jpg" alt="Memories calendar for September: leaf icons on days with entries and a faint gray dot on the one skipped day." loading="lazy" width="660" height="1434"></div>
+    </div>
+  </div>
+</section>
 
-  <footer>みつば / Mitsuba</footer>
+<section class="garden" id="garden">
+  <div class="wrap">
+    <div class="stack">
+      <p class="eyebrow" data-i18n="garden.eyebrow">The garden</p>
+      <h2 data-i18n="garden.title">Seven entries. Not seven days in a row.</h2>
+      <p class="lead" data-i18n="garden.lead">Write seven times, whenever they happen, and your plant blooms. Everything you wrote along the way becomes a harvest card in your garden. By winter, the garden looks like your year.</p>
+
+      <div class="growth" aria-label="The seven stages of a daisy">
+        <figure><img src="assets/svg/plant_daisy_s01.svg" alt=""><figcaption data-i18n="stage.0">Seed</figcaption></figure>
+        <figure><img src="assets/svg/plant_daisy_s02.svg" alt=""><figcaption data-i18n="stage.1">Sprout</figcaption></figure>
+        <figure><img src="assets/svg/plant_daisy_s03.svg" alt=""><figcaption data-i18n="stage.2">Two leaves</figcaption></figure>
+        <figure><img src="assets/svg/plant_daisy_s04.svg" alt=""><figcaption data-i18n="stage.3">Three leaves</figcaption></figure>
+        <figure><img src="assets/svg/plant_daisy_s05.svg" alt=""><figcaption data-i18n="stage.4">Young leaves</figcaption></figure>
+        <figure><img src="assets/svg/plant_daisy_s06.svg" alt=""><figcaption data-i18n="stage.5">Bud</figcaption></figure>
+        <figure><img src="assets/svg/plant_daisy_s07.svg" alt=""><figcaption data-i18n="stage.6">Bloom</figcaption></figure>
+      </div>
+
+      <p style="margin-top:22px;color:var(--ink-2)" data-i18n="garden.kinds">Nine kinds, picked by season. You never grow the same one twice in a row.</p>
+      <div class="plants">
+        <figure><img src="assets/svg/plant_daisy_s07.svg" alt=""><figcaption data-i18n="plant.daisy">Daisy</figcaption></figure>
+        <figure><img src="assets/svg/plant_tulip_s07.svg" alt=""><figcaption data-i18n="plant.tulip">Tulip</figcaption></figure>
+        <figure><img src="assets/svg/plant_sakura_s07.svg" alt=""><figcaption data-i18n="plant.sakura">Sakura</figcaption></figure>
+        <figure><img src="assets/svg/plant_sunflower_s07.svg" alt=""><figcaption data-i18n="plant.sunflower">Sunflower</figcaption></figure>
+        <figure><img src="assets/svg/plant_morning_glory_s07.svg" alt=""><figcaption data-i18n="plant.morning_glory">Morning glory</figcaption></figure>
+        <figure><img src="assets/svg/plant_lavender_s07.svg" alt=""><figcaption data-i18n="plant.lavender">Lavender</figcaption></figure>
+        <figure><img src="assets/svg/plant_clover_s07.svg" alt=""><figcaption data-i18n="plant.clover">Clover</figcaption></figure>
+        <figure><img src="assets/svg/plant_maple_s07.svg" alt=""><figcaption data-i18n="plant.maple">Maple</figcaption></figure>
+        <figure><img src="assets/svg/plant_camellia_s07.svg" alt=""><figcaption data-i18n="plant.camellia">Camellia</figcaption></figure>
+      </div>
+
+      <div class="lookback" aria-label="Example of the Look back card">
+        <div class="lb-head"><span data-i18n="lb.title">Look back</span><span>Aug 17</span></div>
+        <div class="lb-body" data-i18n="lb.body">Priya bought me an oat milk latte without me even asking</div>
+        <div class="lb-foot" data-i18n="lb.foot">Show another</div>
+      </div>
+      <p style="margin-top:12px;color:var(--ink-2);font-size:0.95rem" data-i18n="lb.note">Look back surfaces a good thing from weeks ago. The kind you'd already forgotten.</p>
+    </div>
+    <div class="phone"><img src="assets/screens/garden.jpg" alt="Garden tab: a night garden with Hina, the plant now growing, and a harvest card labeled Clover, Aug 30 to Sep 6, under the heading Autumn 2026." loading="lazy" width="660" height="1434"></div>
+  </div>
+</section>
+
+<section class="companions" id="companions">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="comp.eyebrow">Companions</p>
+    <h2 data-i18n="comp.title">Pick who you write with.</h2>
+    <div class="trio">
+      <div class="companion">
+        <img src="assets/svg/char_mitsu_idle.svg" alt="Mitsu, a soft white sprout character with a clover leaf">
+        <h3>Mitsu</h3>
+        <p class="tag" data-i18n="comp.mitsu.tag">Gentle and easygoing</p>
+        <p class="bubble" data-i18n="comp.mitsu.line">Something small is fine. Let's start with one.</p>
+      </div>
+      <div class="companion">
+        <img src="assets/svg/char_hina_idle.svg" alt="Hina, a warm yellow sprout character with a small flower">
+        <h3>Hina</h3>
+        <p class="tag" data-i18n="comp.hina.tag">Bright and warm</p>
+        <p class="bubble" data-i18n="comp.hina.line">Anything nice happen today? Even a tiny thing.</p>
+      </div>
+      <div class="companion">
+        <img src="assets/svg/char_yoru_idle.svg" alt="Yoru, a pale lilac sprout character wearing a nightcap">
+        <h3>Yoru</h3>
+        <p class="tag" data-i18n="comp.yoru.tag">Quiet and reassuring</p>
+        <p class="bubble" data-i18n="comp.yoru.line">One thing from today. Take your time.</p>
+      </div>
+    </div>
+    <p class="switch-note" data-i18n="comp.switch">Every companion goes at your pace. Switch any time in Settings.</p>
+  </div>
+</section>
+
+<section class="privacy" id="privacy">
+  <div class="wrap">
+    <div class="stack">
+      <p class="eyebrow" data-i18n="priv.eyebrow">Private by design</p>
+      <h2 data-i18n="priv.title">What you write never leaves your iPhone.</h2>
+      <p class="lead" data-i18n="priv.lead">Mitsuba makes no network requests at all. There is nothing to sign up for, nothing to sync, and nothing for anyone else to read.</p>
+      <p><a href="privacy.html" data-i18n="priv.link">Read the privacy policy</a></p>
+    </div>
+    <ul class="facts">
+      <li><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><div><b data-i18n="priv.f1">No account, no sign-up</b><span data-i18n="priv.f1s">Open the app and start writing. That's the whole onboarding.</span></div></li>
+      <li><svg viewBox="0 0 24 24"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/></svg><div><b data-i18n="priv.f2">Works in airplane mode</b><span data-i18n="priv.f2s">Every feature works offline, because none of them need the internet.</span></div></li>
+      <li><svg viewBox="0 0 24 24"><path d="M4 4l16 16M9.5 9.5A4 4 0 0 0 12 16a4 4 0 0 0 2.5-.9M12 8a4 4 0 0 1 4 4"/><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/></svg><div><b data-i18n="priv.f3">No ads, no analytics, no tracking</b><span data-i18n="priv.f3s">Not a single third-party SDK. The developer can't see your entries either.</span></div></li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><div><b data-i18n="priv.f4">Export or delete any time</b><span data-i18n="priv.f4s">Save everything as plain text or JSON, or delete it all in two taps.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="faq.eyebrow">Questions</p>
+    <h2 data-i18n="faq.title">Small print, in plain words.</h2>
+    <div class="faq-list">
+      <details><summary data-i18n="faq.q1">Is it free?</summary><p data-i18n="faq.a1">Yes. Mitsuba is free to download, with no ads.</p></details>
+      <details><summary data-i18n="faq.q2">What happens if I miss a day?</summary><p data-i18n="faq.a2">Nothing. The plant never goes backwards and never dies. The next day you write, it grows one more step.</p></details>
+      <details><summary data-i18n="faq.q3">Do I have to write three things?</summary><p data-i18n="faq.a3">No. One is enough for the day to count and the plant to grow. There's a “That's all” button after every entry.</p></details>
+      <details><summary data-i18n="faq.q4">Where is what I write stored?</summary><p data-i18n="faq.a4">Only on your iPhone. The app makes no network requests, so nothing is ever sent anywhere.</p></details>
+      <details><summary data-i18n="faq.q5">Can I move my entries to a new phone?</summary><p data-i18n="faq.a5">Not automatically in this version. Use Settings, then “Export as JSON” to keep a copy.</p></details>
+      <details><summary data-i18n="faq.q6">Which languages does it support?</summary><p data-i18n="faq.a6">English, 日本語, 한국어 and 繁體中文. It follows your iPhone's language, and you can change it in Settings.</p></details>
+      <details><summary data-i18n="faq.q7">Which iPhones does it run on?</summary><p data-i18n="faq.a7">Any iPhone running iOS 17 or later.</p></details>
+    </div>
+    <p style="margin-top:28px;color:var(--ink-2)" data-i18n="faq.contact">Something else? Write to <a href="mailto:sh.hirokawa@icloud.com">sh.hirokawa@icloud.com</a> or see the <a href="support.html">support page</a>.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <img class="icon" src="assets/appicon.png" alt="Mitsuba app icon" width="96" height="96">
+    <h2 data-i18n="close.title">Tonight, before bed. Ninety seconds.</h2>
+    <p class="lead" data-i18n="close.lead">Three small things that went well. That's all it asks.</p>
+    <a class="btn btn-primary js-cta" href="https://apps.apple.com/app/id6808511381">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.9 1.2 1.9 2.6 3.2 2.5 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.3-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.9-1.1-2.9-4zM14 5.3c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg>
+      <span data-i18n="hero.cta">Download on the App Store</span>
+    </a>
+    <span class="cta-note" data-i18n="close.note">iPhone · iOS 17 or later · Free</span>
+  </div>
+</section>
+
 </main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Mitsuba</span>
+    <a href="privacy.html" data-i18n="foot.privacy">Privacy policy</a>
+    <a href="support.html" data-i18n="foot.support">Support</a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" lang="en">EN</button>
+      <button type="button" data-lang="ja" lang="ja">日本語</button>
+      <button type="button" data-lang="ko" lang="ko">한국어</button>
+      <button type="button" data-lang="zh-Hant" lang="zh-Hant">繁體中文</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---- Launch switch. Flip to true once the app is live on the App Store. ---- */
+var APP_STORE_LIVE = false;
+var APP_STORE_URL = "https://apps.apple.com/app/id6808511381";
+
+/* ---- Copy in four languages. English lives in the markup; the rest here. ---- */
+var I18N = {
+  "ja": {
+    "nav.how": "ある夜の流れ", "nav.garden": "にわ", "nav.companions": "キャラクター", "nav.privacy": "プライバシー", "nav.faq": "よくある質問",
+    "hero.eyebrow": "日記が続かなかった人のための、感謝日記",
+    "hero.title": "今日のいいこと、3つだけ。<br>それがこのアプリのすべて。",
+    "hero.lead": "寝る前の90秒。キャラクターが「今日あった良いこと」を聞いてくれて、答えると庭の小さな植物が育ちます。書けない日があっても、何も起きません。連続記録なし。罪悪感なし。",
+    "hero.cta": "App Store でダウンロード", "hero.cta.soon": "まもなく App Store に登場",
+    "hero.note": "無料 · アカウント不要 · 機内モードでも動く",
+    "hero.bubble": "今日のいいこと、ひとつめ！おしえて！",
+    "how.eyebrow": "ある夜の流れ", "how.title": "白紙とにらめっこしません。",
+    "how.lead": "アプリを開くと、もう質問が待っています。1つ、2つ、あれば3つ答えたら、スマホを置くだけ。",
+    "how.s1.title": "ヒナが先に聞いてくれる。", "how.s1.body": "最初に見えるのは空っぽの入力欄ではなく、質問です。良いことをひとつ聞いて、答えたら次をひとつ。",
+    "how.s2.title": "ひとことで答える。", "how.s2.body": "ちょうどいい濃さのコーヒー。洗濯物の上で寝ていた猫。用もなく電話をくれた妹。1つで十分。3つなら習慣になります。",
+    "how.s3.title": "育つのを見る。", "how.s3.body": "書いた日は、植物が目の前で1段階のびます。ヒナがそれを教えてくれます。今日はここまで。また明日。",
+    "how.note": "そのあとに1タップだけ、「今の気分は？」。5つの顔とスキップ。どちらを選んでもキャラクターがひとこと返します。",
+    "shot.note": "画面は英語版です。アプリは日本語に完全対応しています。",
+    "hard.eyebrow": "書きたくない日のために", "hard.title": "しんどい日のボタンがあります。",
+    "hard.lead": "「今日はしんどい」を押すと、ヒナは目を閉じて、いっしょに休みます。何も書かなくていい。何も減りません。",
+    "hard.l1": "植物は枯れない、死なない、リセットされない。",
+    "hard.l2": "書かなかった日は、カレンダーの薄いグレーの点。赤でも、×でもありません。",
+    "hard.l3": "連続日数のカウンターは、アプリのどこにもありません。合計7回書けば、いつ書いても花が咲きます。",
+    "hard.q": "「おかえり。ここから、また。」", "hard.qs": "数日ぶりに開いたときの挨拶はこれだけ。空いた日数は数えません。",
+    "garden.eyebrow": "にわ", "garden.title": "合計7回。7日連続じゃなくていい。",
+    "garden.lead": "いつでもいいから7回書くと、植物が咲きます。そのあいだに書いた良いことは1枚の収穫カードになって、にわに残ります。冬になるころ、にわはあなたの1年の形になっています。",
+    "garden.kinds": "季節に合わせて9種類。同じ種類が2回続くことはありません。",
+    "plant.daisy": "デイジー", "plant.tulip": "チューリップ", "plant.sakura": "さくら", "plant.sunflower": "ひまわり", "plant.morning_glory": "あさがお", "plant.lavender": "ラベンダー", "plant.clover": "クローバー", "plant.maple": "もみじ", "plant.camellia": "つばき",
+    "stage.0": "たね", "stage.1": "め", "stage.2": "ふたば", "stage.3": "みつば", "stage.4": "わかば", "stage.5": "つぼみ", "stage.6": "はな",
+    "lb.title": "ふりかえり", "lb.body": "プリヤが頼んでもいないのにオーツミルクラテを買ってきてくれた", "lb.foot": "ほかのを見る",
+    "lb.note": "「ふりかえり」には、何週間か前に書いた良いことが出てきます。もう忘れていたような小さなこと。",
+    "comp.eyebrow": "キャラクター", "comp.title": "いっしょに書く相手を選ぶ。",
+    "comp.mitsu.tag": "やさしく、のんびり", "comp.mitsu.line": "小さなことでいいですよ。まずひとつ。",
+    "comp.hina.tag": "明るく、あたたかい", "comp.hina.line": "今日のいいこと、ひとつめ！おしえて！",
+    "comp.yoru.tag": "静かに、寄り添う", "comp.yoru.line": "今日のこと、ひとつだけ。ゆっくりでいい。",
+    "comp.switch": "どのキャラクターも、あなたのペースで。設定でいつでも変えられます。",
+    "priv.eyebrow": "はじめからプライベート", "priv.title": "書いたものは iPhone の外に出ません。",
+    "priv.lead": "みつばはネットワーク通信を一切行いません。登録するものも、同期するものも、誰かに読まれるものもありません。",
+    "priv.link": "プライバシーポリシーを読む",
+    "priv.f1": "アカウント不要、登録不要", "priv.f1s": "開いて、書くだけ。それが導入のすべてです。",
+    "priv.f2": "機内モードでも動く", "priv.f2s": "すべての機能がオフラインで動きます。インターネットを必要とする機能がないからです。",
+    "priv.f3": "広告なし、解析なし、トラッキングなし", "priv.f3s": "第三者 SDK はひとつも入っていません。開発者もあなたの記録を見られません。",
+    "priv.f4": "いつでも書き出し・削除", "priv.f4s": "テキストや JSON で保存できます。2タップで全部消すこともできます。",
+    "faq.eyebrow": "よくある質問", "faq.title": "細かいことを、ふつうの言葉で。",
+    "faq.q1": "無料ですか？", "faq.a1": "はい。みつばは無料でダウンロードでき、広告もありません。",
+    "faq.q2": "1日書けなかったら、どうなりますか？", "faq.a2": "何も起きません。段階が下がることも、枯れることもありません。次に書いた日にまた1段階育ちます。",
+    "faq.q3": "3つ書かないといけませんか？", "faq.a3": "いいえ。1つ書けばその日は完了で、植物も育ちます。毎回「これでおしまい」ボタンがあります。",
+    "faq.q4": "書いた内容はどこに保存されますか？", "faq.a4": "お使いの iPhone の中だけです。通信を一切行わないため、どこにも送信されません。",
+    "faq.q5": "機種変更したら記録は引き継げますか？", "faq.a5": "いまのバージョンでは自動の引き継ぎはありません。「設定 → JSON で書き出す」でお手元に保存しておいてください。",
+    "faq.q6": "対応言語は？", "faq.a6": "日本語・English・한국어・繁體中文。iPhone の言語設定に従い、アプリの設定でも変えられます。",
+    "faq.q7": "対応機種は？", "faq.a7": "iOS 17 以降の iPhone です。",
+    "faq.contact": "ほかにご質問があれば <a href=\"mailto:sh.hirokawa@icloud.com\">sh.hirokawa@icloud.com</a> か、<a href=\"support.html\">サポートページ</a>へ。",
+    "close.title": "今夜、寝る前に。90秒。", "close.lead": "うまくいった小さなことを3つ。それだけです。",
+    "close.note": "iPhone · iOS 17 以降 · 無料",
+    "foot.privacy": "プライバシーポリシー", "foot.support": "サポート"
+  },
+  "ko": {
+    "nav.how": "하룻밤의 흐름", "nav.garden": "정원", "nav.companions": "친구들", "nav.privacy": "개인정보", "nav.faq": "자주 묻는 질문",
+    "hero.eyebrow": "일기를 그만둔 적 있는 사람을 위한 감사 일기",
+    "hero.title": "좋은 일 세 가지.<br>이 앱의 전부예요.",
+    "hero.lead": "자기 전 90초. 친구가 오늘 있었던 좋은 일을 물어보고, 대답하면 정원의 작은 식물이 자라요. 하루 빼먹어도 아무 일도 일어나지 않아요. 연속 기록 없음. 죄책감 없음.",
+    "hero.cta": "App Store에서 다운로드", "hero.cta.soon": "곧 App Store에서 만나요",
+    "hero.note": "무료 · 계정 불필요 · 비행기 모드에서도 작동",
+    "hero.bubble": "오늘 좋은 일! 첫 번째! 알려줘!",
+    "how.eyebrow": "하룻밤의 흐름", "how.title": "빈 화면과 마주하지 않아요.",
+    "how.lead": "앱을 열면 질문이 이미 기다리고 있어요. 하나, 둘, 있으면 셋까지 대답하고 폰을 내려놓으면 끝.",
+    "how.s1.title": "히나가 먼저 물어봐요.", "how.s1.body": "처음 보이는 건 빈 입력창이 아니라 질문이에요. 좋은 일 하나를 묻고, 대답하면 다음 하나를 물어요.",
+    "how.s2.title": "한 문장으로 대답해요.", "how.s2.body": "딱 알맞았던 커피. 따뜻한 빨래 위에서 잠든 고양이. 용건 없이 전화한 동생. 하나면 충분해요. 셋이면 습관이 돼요.",
+    "how.s3.title": "자라는 걸 지켜봐요.", "how.s3.body": "쓴 날마다 식물이 눈앞에서 한 단계 자라요. 히나가 알려 줘요. 오늘은 여기까지, 내일 또 만나요.",
+    "how.note": "그 뒤에 딱 한 번, '지금 기분은?' 다섯 개의 얼굴과 건너뛰기 버튼. 무엇을 골라도 친구가 한마디 건네요.",
+    "shot.note": "화면은 영어 버전이에요. 앱은 한국어를 완전히 지원해요.",
+    "hard.eyebrow": "쓰고 싶지 않은 날을 위해", "hard.title": "힘든 날을 위한 버튼이 있어요.",
+    "hard.lead": "'오늘은 힘들어요'를 누르면 히나가 눈을 감고 함께 쉬어요. 아무것도 쓰지 않아도 돼요. 아무것도 줄어들지 않아요.",
+    "hard.l1": "식물은 시들지도, 죽지도, 초기화되지도 않아요.",
+    "hard.l2": "빼먹은 날은 달력의 연한 회색 점일 뿐이에요. 빨간색도, X도 아니에요.",
+    "hard.l3": "연속 일수 카운터는 앱 어디에도 없어요. 언제 쓰든 합쳐서 일곱 번이면 꽃이 피어요.",
+    "hard.q": "\"다시 만났네요. 지금 여기서부터.\"", "hard.qs": "며칠 만에 열었을 때의 인사는 이게 전부예요. 빈 날을 세지 않아요.",
+    "garden.eyebrow": "정원", "garden.title": "일곱 번. 7일 연속이 아니어도 돼요.",
+    "garden.lead": "언제든 일곱 번 쓰면 식물이 꽃을 피워요. 그동안 적은 좋은 일은 한 장의 수확 카드가 되어 정원에 남아요. 겨울이 오면 정원은 당신의 한 해를 닮아 있을 거예요.",
+    "garden.kinds": "계절에 맞춰 아홉 종류. 같은 종류가 연달아 나오지 않아요.",
+    "plant.daisy": "데이지", "plant.tulip": "튤립", "plant.sakura": "벚꽃", "plant.sunflower": "해바라기", "plant.morning_glory": "나팔꽃", "plant.lavender": "라벤더", "plant.clover": "클로버", "plant.maple": "단풍", "plant.camellia": "동백",
+    "stage.0": "씨앗", "stage.1": "새싹", "stage.2": "떡잎", "stage.3": "세잎", "stage.4": "어린잎", "stage.5": "꽃봉오리", "stage.6": "개화",
+    "lb.title": "되돌아보기", "lb.body": "프리야가 부탁하지도 않았는데 오트밀크 라떼를 사다 줬다", "lb.foot": "다른 것 보기",
+    "lb.note": "'되돌아보기'에는 몇 주 전에 적은 좋은 일이 나와요. 이미 잊고 있던 작은 일들이에요.",
+    "comp.eyebrow": "친구들", "comp.title": "함께 쓸 친구를 골라요.",
+    "comp.mitsu.tag": "다정하고 느긋해요", "comp.mitsu.line": "작은 거라도 괜찮아요. 하나부터 시작해요.",
+    "comp.hina.tag": "밝고 따뜻해요", "comp.hina.line": "오늘 좋은 일! 첫 번째! 알려줘!",
+    "comp.yoru.tag": "조용히 곁에 있어요", "comp.yoru.line": "오늘 일, 하나만. 천천히.",
+    "comp.switch": "모든 친구가 당신의 속도에 맞춰요. 설정에서 언제든 바꿀 수 있어요.",
+    "priv.eyebrow": "처음부터 프라이빗", "priv.title": "쓴 내용은 iPhone 밖으로 나가지 않아요.",
+    "priv.lead": "미츠바는 네트워크 요청을 전혀 하지 않아요. 가입할 것도, 동기화할 것도, 다른 누군가가 읽을 것도 없어요.",
+    "priv.link": "개인정보 처리방침 읽기",
+    "priv.f1": "계정 없음, 가입 없음", "priv.f1s": "앱을 열고 쓰기 시작하면 돼요. 그게 온보딩의 전부예요.",
+    "priv.f2": "비행기 모드에서도 작동", "priv.f2s": "모든 기능이 오프라인에서 작동해요. 인터넷이 필요한 기능이 없거든요.",
+    "priv.f3": "광고, 분석, 추적 없음", "priv.f3s": "서드파티 SDK가 하나도 없어요. 개발자도 당신의 기록을 볼 수 없어요.",
+    "priv.f4": "언제든 내보내기·삭제", "priv.f4s": "텍스트나 JSON으로 저장하거나, 두 번의 탭으로 전부 삭제할 수 있어요.",
+    "faq.eyebrow": "자주 묻는 질문", "faq.title": "작은 글씨를, 쉬운 말로.",
+    "faq.q1": "무료인가요?", "faq.a1": "네. 미츠바는 무료로 다운로드할 수 있고 광고도 없어요.",
+    "faq.q2": "하루 빼먹으면 어떻게 되나요?", "faq.a2": "아무 일도 없어요. 식물은 뒤로 가지도, 죽지도 않아요. 다음에 쓰는 날 한 단계 더 자라요.",
+    "faq.q3": "꼭 세 가지를 써야 하나요?", "faq.a3": "아니요. 하나만 써도 그날은 완료되고 식물도 자라요. 매번 '여기까지' 버튼이 있어요.",
+    "faq.q4": "쓴 내용은 어디에 저장되나요?", "faq.a4": "iPhone 안에만 저장돼요. 네트워크 요청을 하지 않으니 어디로도 전송되지 않아요.",
+    "faq.q5": "새 폰으로 기록을 옮길 수 있나요?", "faq.a5": "이 버전에서는 자동으로 옮겨지지 않아요. 설정 → 'JSON으로 내보내기'로 사본을 보관해 주세요.",
+    "faq.q6": "어떤 언어를 지원하나요?", "faq.a6": "한국어, English, 日本語, 繁體中文. iPhone 언어 설정을 따르고, 앱 설정에서도 바꿀 수 있어요.",
+    "faq.q7": "어떤 iPhone에서 되나요?", "faq.a7": "iOS 17 이상의 모든 iPhone이에요.",
+    "faq.contact": "다른 질문은 <a href=\"mailto:sh.hirokawa@icloud.com\">sh.hirokawa@icloud.com</a> 또는 <a href=\"support.html\">지원 페이지</a>로.",
+    "close.title": "오늘 밤, 자기 전에. 90초.", "close.lead": "잘 풀린 작은 일 세 가지. 그게 전부예요.",
+    "close.note": "iPhone · iOS 17 이상 · 무료",
+    "foot.privacy": "개인정보 처리방침", "foot.support": "지원"
+  },
+  "zh-Hant": {
+    "nav.how": "一個晚上的流程", "nav.garden": "花園", "nav.companions": "夥伴", "nav.privacy": "隱私", "nav.faq": "常見問題",
+    "hero.eyebrow": "給曾經放棄寫日記的人的感恩日記",
+    "hero.title": "三件好事。<br>這就是整個 App。",
+    "hero.lead": "睡前大約 90 秒。夥伴會問你今天有什麼好事，回答之後，花園裡的小植物就會長大。漏掉一天也不會發生任何事。沒有連續紀錄，沒有罪惡感。",
+    "hero.cta": "在 App Store 下載", "hero.cta.soon": "即將在 App Store 推出",
+    "hero.note": "免費 · 不用帳號 · 飛航模式也能用",
+    "hero.bubble": "今天的好事！第一件！快說！",
+    "how.eyebrow": "一個晚上的流程", "how.title": "不必面對空白頁。",
+    "how.lead": "打開 App，問題已經在那裡等你。回答一件、兩件，有的話三件，然後把手機放下。",
+    "how.s1.title": "Hina 先開口問。", "how.s1.body": "第一眼看到的是一個問題，不是空白的輸入框。夥伴問你一件好事，回答之後再問下一件。",
+    "how.s2.title": "用一句話回答。", "how.s2.body": "濃度剛剛好的咖啡。睡在溫熱衣物上的貓。沒事也打電話來的妹妹。一件就夠了，三件就成了習慣。",
+    "how.s3.title": "看著它長大。", "how.s3.body": "每寫一天，植物就在你眼前長大一階。Hina 會告訴你。今天到此為止，明天見。",
+    "how.note": "之後只有一次輕點：現在心情如何？五張臉和一個「略過」。不管選哪個，夥伴都會回你一句。",
+    "shot.note": "畫面為英文版。App 完整支援繁體中文。",
+    "hard.eyebrow": "留給不想寫的日子", "hard.title": "有一顆給難熬日子的按鈕。",
+    "hard.lead": "點「今天很累」，Hina 會閉上眼睛陪你休息。不用寫任何東西，也不會失去任何東西。",
+    "hard.l1": "植物不會枯萎、不會死、不會重來。",
+    "hard.l2": "漏掉的那天，只是月曆上一個淡灰色的點。不是紅色，也不是叉。",
+    "hard.l3": "App 裡沒有任何連續天數的計數器。不管什麼時候寫，總共七次就會開花。",
+    "hard.q": "「歡迎回來。就從現在開始。」", "hard.qs": "隔了幾天再打開，問候就只有這句。它不數你空了幾天。",
+    "garden.eyebrow": "花園", "garden.title": "總共七次，不必連續七天。",
+    "garden.lead": "隨時寫滿七次，植物就會開花。這段期間寫下的好事會變成一張收穫卡，留在花園裡。到了冬天，花園就是你這一年的樣子。",
+    "garden.kinds": "依季節挑選，共九種。不會連續兩次種到同一種。",
+    "plant.daisy": "雛菊", "plant.tulip": "鬱金香", "plant.sakura": "櫻花", "plant.sunflower": "向日葵", "plant.morning_glory": "牽牛花", "plant.lavender": "薰衣草", "plant.clover": "三葉草", "plant.maple": "楓葉", "plant.camellia": "山茶花",
+    "stage.0": "種子", "stage.1": "發芽", "stage.2": "雙葉", "stage.3": "三葉", "stage.4": "嫩葉", "stage.5": "花苞", "stage.6": "開花",
+    "lb.title": "回顧", "lb.body": "Priya 沒等我開口就幫我買了燕麥奶拿鐵", "lb.foot": "再看一則",
+    "lb.note": "「回顧」會出現幾週前寫下的好事。那些你早已忘記的小小片刻。",
+    "comp.eyebrow": "夥伴", "comp.title": "選一位陪你寫的夥伴。",
+    "comp.mitsu.tag": "溫柔、自在", "comp.mitsu.line": "小事也可以。先說一件就好。",
+    "comp.hina.tag": "開朗、溫暖", "comp.hina.line": "今天的好事！第一件！快說！",
+    "comp.yoru.tag": "安靜地陪伴", "comp.yoru.line": "今天的事，一件就好。慢慢來。",
+    "comp.switch": "每位夥伴都配合你的步調。隨時可以在設定裡更換。",
+    "priv.eyebrow": "從一開始就私密", "priv.title": "你寫的內容不會離開 iPhone。",
+    "priv.lead": "三葉草完全不進行網路連線。沒有要註冊的東西、沒有要同步的東西，也沒有任何人能讀到。",
+    "priv.link": "閱讀隱私權政策",
+    "priv.f1": "不用帳號、不用註冊", "priv.f1s": "打開 App 就能開始寫。這就是全部的新手引導。",
+    "priv.f2": "飛航模式也能用", "priv.f2s": "所有功能都能離線使用，因為沒有一項需要網路。",
+    "priv.f3": "沒有廣告、分析、追蹤", "priv.f3s": "沒有任何第三方 SDK。連開發者也看不到你的記錄。",
+    "priv.f4": "隨時匯出或刪除", "priv.f4s": "可以存成純文字或 JSON，也可以兩下就全部刪除。",
+    "faq.eyebrow": "常見問題", "faq.title": "把細節，用白話說清楚。",
+    "faq.q1": "是免費的嗎？", "faq.a1": "是。三葉草免費下載，也沒有廣告。",
+    "faq.q2": "漏掉一天會怎樣？", "faq.a2": "什麼都不會發生。植物不會倒退，也不會死。下次寫的那天，它會再長一階。",
+    "faq.q3": "一定要寫三件嗎？", "faq.a3": "不用。寫一件那天就算完成，植物也會長大。每次都有「就這樣」的按鈕。",
+    "faq.q4": "寫的內容存在哪裡？", "faq.a4": "只在你的 iPhone 裡。App 不進行任何網路連線，所以不會傳到任何地方。",
+    "faq.q5": "換手機能把記錄帶走嗎？", "faq.a5": "這個版本沒有自動轉移。請用「設定 → 匯出成 JSON」保留一份。",
+    "faq.q6": "支援哪些語言？", "faq.a6": "繁體中文、English、日本語、한국어。會跟隨 iPhone 的語言設定，也能在 App 設定裡更改。",
+    "faq.q7": "哪些 iPhone 能用？", "faq.a7": "iOS 17 以上的所有 iPhone。",
+    "faq.contact": "還有其他問題？寫信到 <a href=\"mailto:sh.hirokawa@icloud.com\">sh.hirokawa@icloud.com</a>，或看看<a href=\"support.html\">支援頁面</a>。",
+    "close.title": "今晚睡前，90 秒。", "close.lead": "三件順利的小事。它要的就只有這些。",
+    "close.note": "iPhone · iOS 17 以上 · 免費",
+    "foot.privacy": "隱私權政策", "foot.support": "支援"
+  }
+};
+I18N["en"] = {};
+
+var SOON = { "en": "Coming soon to the App Store", "ja": "まもなく App Store に登場", "ko": "곧 App Store에서 만나요", "zh-Hant": "即將在 App Store 推出" };
+var ORIGINAL = {};
+
+function pickLang() {
+  var q = new URLSearchParams(location.search).get("lang");
+  if (q && I18N[q]) return q;
+  try { var s = localStorage.getItem("mitsuba-lang"); if (s && I18N[s]) return s; } catch (e) {}
+  var n = (navigator.language || "en").toLowerCase();
+  if (n.indexOf("ja") === 0) return "ja";
+  if (n.indexOf("ko") === 0) return "ko";
+  if (n.indexOf("zh") === 0 && (n.indexOf("tw") > -1 || n.indexOf("hk") > -1 || n.indexOf("hant") > -1 || n.indexOf("mo") > -1)) return "zh-Hant";
+  return "en";
+}
+
+function applyLang(lang) {
+  var dict = I18N[lang] || {};
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    var k = el.getAttribute("data-i18n");
+    if (!(k in ORIGINAL)) ORIGINAL[k] = el.innerHTML;
+    el.innerHTML = (k in dict) ? dict[k] : ORIGINAL[k];
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.setAttribute("aria-current", b.getAttribute("data-lang") === lang ? "true" : "false");
+  });
+  document.querySelectorAll(".js-cta").forEach(function (a) {
+    var label = a.querySelector("span");
+    if (APP_STORE_LIVE) {
+      a.setAttribute("href", APP_STORE_URL);
+      a.removeAttribute("aria-disabled");
+    } else {
+      a.removeAttribute("href");
+      a.setAttribute("aria-disabled", "true");
+      a.style.cursor = "default";
+      if (label) label.textContent = SOON[lang] || SOON.en;
+    }
+  });
+  try { localStorage.setItem("mitsuba-lang", lang); } catch (e) {}
+}
+
+document.querySelectorAll(".lang button").forEach(function (b) {
+  b.addEventListener("click", function () { applyLang(b.getAttribute("data-lang")); });
+});
+applyLang(pickLang());
+</script>
 </body>
 </html>
