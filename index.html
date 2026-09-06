@@ -105,7 +105,7 @@ p { margin: 0; }
   color: var(--accent); margin-bottom: 14px;
 }
 :lang(ja) .eyebrow, :lang(ko) .eyebrow, :lang(zh-Hant) .eyebrow { letter-spacing: 0.08em; text-transform: none; font-size: 0.85rem; }
-:lang(ja) h1, :lang(ko) h1, :lang(zh-Hant) h1 { font-size: clamp(1.8rem, 4.4vw, 2.9rem); letter-spacing: 0; max-width: none; line-height: 1.3; }
+:lang(ja) h1, :lang(ko) h1, :lang(zh-Hant) h1 { font-size: clamp(1.7rem, 3.6vw, 2.45rem); letter-spacing: 0; line-height: 1.35; }
 :lang(ja) h2, :lang(ko) h2, :lang(zh-Hant) h2 { letter-spacing: 0; line-height: 1.35; }
 .wrap { width: min(1080px, 100% - 48px); margin-inline: auto; }
 @media (max-width: 600px) { .wrap { width: min(1080px, 100% - 32px); } }
@@ -157,6 +157,7 @@ section { padding-block: 88px; }
 .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
 @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; gap: 44px; } }
 .hero h1 { max-width: 12em; }
+:lang(ja) .hero h1, :lang(ko) .hero h1, :lang(zh-Hant) .hero h1 { max-width: none; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 8px; }
 .hero-visual { position: relative; display: grid; place-items: center; }
 .hero-visual .phone { max-width: 300px; }
@@ -294,8 +295,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: cent
 footer a { color: var(--ink-2); }
 footer .lang { margin-left: auto; }
 
-.shot-note { font-size: 0.8rem; color: var(--ink-2); margin-top: 8px; display: none; }
-:lang(ja) .shot-note, :lang(ko) .shot-note, :lang(zh-Hant) .shot-note { display: block; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -342,7 +341,7 @@ footer .lang { margin-left: auto; }
       </div>
     </div>
     <div class="hero-visual">
-      <div class="phone"><img src="assets/screens/growth-moment.jpg" alt="Mitsuba after an evening entry: Hina celebrating in a night garden, the daisy's first stage filled in, and the line “It grew! You did that.”" width="660" height="1434" fetchpriority="high"></div>
+      <div class="phone"><img data-shot="growth-moment" src="assets/screens/growth-moment.jpg" alt="Mitsuba after an evening entry: Hina celebrating in a night garden, the daisy's first stage filled in, and the line “It grew! You did that.”" width="660" height="1434" fetchpriority="high"></div>
       <img class="hero-hina" src="assets/svg/char_hina_wave.svg" alt="" width="150" height="150">
       <div class="hero-bubble" data-i18n="hero.bubble">Anything nice happen today? Even a tiny thing.</div>
     </div>
@@ -357,19 +356,19 @@ footer .lang { margin-left: auto; }
 
     <div class="steps">
       <div class="step">
-        <div class="phone phone-sm"><img src="assets/screens/chat-open.jpg" alt="Chat screen. Hina says: Hi! I'm Hina. So happy you're here. Anything nice happen today? Even a tiny thing." loading="lazy" width="660" height="1434"></div>
+        <div class="phone phone-sm"><img data-shot="chat-open" src="assets/screens/chat-open.jpg" alt="Chat screen. Hina says: Hi! I'm Hina. So happy you're here. Anything nice happen today? Even a tiny thing." loading="lazy" width="660" height="1434"></div>
         <span class="step-time">0:00</span>
         <h3 data-i18n="how.s1.title">Hina asks first.</h3>
         <p data-i18n="how.s1.body">The first thing on screen is a question, not an empty box. Your companion asks for one good thing, then the next.</p>
       </div>
       <div class="step">
-        <div class="phone phone-sm"><img src="assets/screens/chat-third-typing.jpg" alt="Chat screen with two entries saved: coffee that was exactly right, and the cat asleep on warm laundry. A third is being typed." loading="lazy" width="660" height="1434"></div>
+        <div class="phone phone-sm"><img data-shot="chat-third-typing" src="assets/screens/chat-third-typing.jpg" alt="Chat screen with two entries saved: coffee that was exactly right, and the cat asleep on warm laundry. A third is being typed." loading="lazy" width="660" height="1434"></div>
         <span class="step-time">0:40</span>
         <h3 data-i18n="how.s2.title">Answer in a sentence.</h3>
         <p data-i18n="how.s2.body">Coffee that was exactly right. The cat on the warm laundry. Your sister calling for no reason. One is plenty. Three is the habit.</p>
       </div>
       <div class="step">
-        <div class="phone phone-sm"><img src="assets/screens/growth-moment.jpg" alt="Growth moment: Hina cheering, the daisy moves from seed to sprout, and she says It grew! You did that." loading="lazy" width="660" height="1434"></div>
+        <div class="phone phone-sm"><img data-shot="growth-moment" src="assets/screens/growth-moment.jpg" alt="Growth moment: Hina cheering, the daisy moves from seed to sprout, and she says It grew! You did that." loading="lazy" width="660" height="1434"></div>
         <span class="step-time">1:30</span>
         <h3 data-i18n="how.s3.title">Watch it grow.</h3>
         <p data-i18n="how.s3.body">Every day you write, your plant grows one stage, right in front of you. Hina says so. Then you're done until tomorrow.</p>
@@ -377,7 +376,6 @@ footer .lang { margin-left: auto; }
     </div>
 
     <p class="after-note" data-i18n="how.note">Afterward there's one optional tap: how do you feel? Five faces and a Skip button. Your companion answers either way.</p>
-    <p class="shot-note" data-i18n="shot.note">Screens shown in English. The app is fully localized.</p>
   </div>
 </section>
 
@@ -404,8 +402,8 @@ footer .lang { margin-left: auto; }
       </div>
     </div>
     <div class="night-phones">
-      <div class="phone phone-sm"><img src="assets/screens/hard-day.jpg" alt="Hard day screen: Hina with her eyes closed. Take a moment to rest. Just showing up counts. Rest well." loading="lazy" width="660" height="1434"></div>
-      <div class="phone phone-sm"><img src="assets/screens/memories.jpg" alt="Memories calendar for September: leaf icons on days with entries and a faint gray dot on the one skipped day." loading="lazy" width="660" height="1434"></div>
+      <div class="phone phone-sm"><img data-shot="hard-day" src="assets/screens/hard-day.jpg" alt="Hard day screen: Hina with her eyes closed. Take a moment to rest. Just showing up counts. Rest well." loading="lazy" width="660" height="1434"></div>
+      <div class="phone phone-sm"><img data-shot="memories" src="assets/screens/memories.jpg" alt="Memories calendar for September: leaf icons on days with entries and a faint gray dot on the one skipped day." loading="lazy" width="660" height="1434"></div>
     </div>
   </div>
 </section>
@@ -447,7 +445,7 @@ footer .lang { margin-left: auto; }
       </div>
       <p style="margin-top:12px;color:var(--ink-2);font-size:0.95rem" data-i18n="lb.note">Look back surfaces a good thing from weeks ago. The kind you'd already forgotten.</p>
     </div>
-    <div class="phone"><img src="assets/screens/garden.jpg" alt="Garden tab: a night garden with Hina, the plant now growing, and a harvest card labeled Clover, Aug 30 to Sep 6, under the heading Autumn 2026." loading="lazy" width="660" height="1434"></div>
+    <div class="phone"><img data-shot="garden" src="assets/screens/garden.jpg" alt="Garden tab: a night garden with Hina, the plant now growing, and a harvest card labeled Clover, Aug 30 to Sep 6, under the heading Autumn 2026." loading="lazy" width="660" height="1434"></div>
   </div>
 </section>
 
@@ -563,7 +561,6 @@ var I18N = {
     "how.s2.title": "ひとことで答える。", "how.s2.body": "ちょうどいい濃さのコーヒー。洗濯物の上で寝ていた猫。用もなく電話をくれた妹。1つで十分。3つなら習慣になります。",
     "how.s3.title": "育つのを見る。", "how.s3.body": "書いた日は、植物が目の前で1段階のびます。ヒナがそれを教えてくれます。今日はここまで。また明日。",
     "how.note": "そのあとに1タップだけ、「今の気分は？」。5つの顔とスキップ。どちらを選んでもキャラクターがひとこと返します。",
-    "shot.note": "画面は英語版です。アプリは日本語に完全対応しています。",
     "hard.eyebrow": "書きたくない日のために", "hard.title": "しんどい日のボタンがあります。",
     "hard.lead": "「今日はしんどい」を押すと、ヒナは目を閉じて、いっしょに休みます。何も書かなくていい。何も減りません。",
     "hard.l1": "植物は枯れない、死なない、リセットされない。",
@@ -616,7 +613,6 @@ var I18N = {
     "how.s2.title": "한 문장으로 대답해요.", "how.s2.body": "딱 알맞았던 커피. 따뜻한 빨래 위에서 잠든 고양이. 용건 없이 전화한 동생. 하나면 충분해요. 셋이면 습관이 돼요.",
     "how.s3.title": "자라는 걸 지켜봐요.", "how.s3.body": "쓴 날마다 식물이 눈앞에서 한 단계 자라요. 히나가 알려 줘요. 오늘은 여기까지, 내일 또 만나요.",
     "how.note": "그 뒤에 딱 한 번, '지금 기분은?' 다섯 개의 얼굴과 건너뛰기 버튼. 무엇을 골라도 친구가 한마디 건네요.",
-    "shot.note": "화면은 영어 버전이에요. 앱은 한국어를 완전히 지원해요.",
     "hard.eyebrow": "쓰고 싶지 않은 날을 위해", "hard.title": "힘든 날을 위한 버튼이 있어요.",
     "hard.lead": "'오늘은 힘들어요'를 누르면 히나가 눈을 감고 함께 쉬어요. 아무것도 쓰지 않아도 돼요. 아무것도 줄어들지 않아요.",
     "hard.l1": "식물은 시들지도, 죽지도, 초기화되지도 않아요.",
@@ -669,7 +665,6 @@ var I18N = {
     "how.s2.title": "用一句話回答。", "how.s2.body": "濃度剛剛好的咖啡。睡在溫熱衣物上的貓。沒事也打電話來的妹妹。一件就夠了，三件就成了習慣。",
     "how.s3.title": "看著它長大。", "how.s3.body": "每寫一天，植物就在你眼前長大一階。Hina 會告訴你。今天到此為止，明天見。",
     "how.note": "之後只有一次輕點：現在心情如何？五張臉和一個「略過」。不管選哪個，夥伴都會回你一句。",
-    "shot.note": "畫面為英文版。App 完整支援繁體中文。",
     "hard.eyebrow": "留給不想寫的日子", "hard.title": "有一顆給難熬日子的按鈕。",
     "hard.lead": "點「今天很累」，Hina 會閉上眼睛陪你休息。不用寫任何東西，也不會失去任何東西。",
     "hard.l1": "植物不會枯萎、不會死、不會重來。",
@@ -733,6 +728,10 @@ function applyLang(lang) {
     el.innerHTML = (k in dict) ? dict[k] : ORIGINAL[k];
   });
   document.documentElement.lang = lang;
+  document.querySelectorAll("img[data-shot]").forEach(function (img) {
+    var name = img.getAttribute("data-shot");
+    img.setAttribute("src", lang === "en" ? "assets/screens/" + name + ".jpg" : "assets/screens/" + lang + "/" + name + ".jpg");
+  });
   document.querySelectorAll(".lang button").forEach(function (b) {
     b.setAttribute("aria-current", b.getAttribute("data-lang") === lang ? "true" : "false");
   });
