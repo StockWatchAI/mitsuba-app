@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mitsuba — Three good things and a little care</title>
-<meta name="description" content="Write three good things, choose a small act of care, and grow a garden with five companions. Sixteen basic plants, no streaks or guilt.">
+<meta name="description" content="Write three good things, choose a small act of care, and grow a garden with five companions. Twenty basic plants, no streaks or guilt.">
 <meta property="og:title" content="Mitsuba — Three good things and a little care">
 <meta property="og:description" content="A gentle gratitude journal with five companions, lifelike plants, and optional daily care. No streaks or guilt.">
 <meta property="og:type" content="website">
@@ -226,7 +226,7 @@ section { padding-block: 88px; }
 @media (max-width: 860px) { .garden .wrap { grid-template-columns: 1fr; } }
 .garden .phone { justify-self: center; max-width: 300px; }
 .growth {
-  display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; align-items: end;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; align-items: end;
   margin-top: 28px; padding: 22px 14px 14px; border-radius: var(--r-card);
   background: var(--muted);
 }
@@ -234,7 +234,7 @@ section { padding-block: 88px; }
 .growth img { width: 100%; max-width: 72px; }
 .growth figcaption { font-size: 0.72rem; font-weight: 700; color: var(--ink-2); text-align: center; }
 .growth figure:last-child figcaption { color: var(--accent); }
-@media (max-width: 480px) { .growth { grid-template-columns: repeat(7, 1fr); gap: 2px; padding: 14px 8px 10px; } .growth figcaption { font-size: 0.6rem; } }
+@media (max-width: 480px) { .growth { grid-template-columns: repeat(5, 1fr); gap: 2px; padding: 14px 8px 10px; } .growth figcaption { font-size: 0.6rem; } }
 .plants { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 26px; }
 .plants figure { margin: 0; width: 66px; display: grid; justify-items: center; gap: 4px; }
 .plants img { width: 56px; }
@@ -243,6 +243,7 @@ section { padding-block: 88px; }
 .botanical-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
 .botanical-grid figure { margin: 0; padding: 12px; border-radius: var(--r-control); background: var(--surface); border: 1px solid var(--line); }
 .botanical-grid img { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: contain; }
+.botanical-grid .atlas { width: 100%; aspect-ratio: 1; background-size: 400% 200%; background-position: 100% 100%; background-repeat: no-repeat; }
 .botanical-grid figcaption { text-align: center; font-weight: 700; font-size: 0.82rem; }
 @media (max-width: 520px) { .botanical-grid { grid-template-columns: 1fr; } }
 .lookback {
@@ -395,7 +396,7 @@ footer .lang { margin-left: auto; }
         <div class="phone phone-sm"><img data-shot="growth-moment" src="assets/screens/growth-moment.jpg" alt="Growth moment: Hina cheering, the daisy moves from seed to sprout, and she says It grew! You did that." loading="lazy" width="660" height="1434"></div>
         <span class="step-time">1:30</span>
         <h3 data-i18n="how.s3.title">Watch it grow.</h3>
-        <p data-i18n="how.s3.body">Every day you write, your plant grows one stage, right in front of you. Hina says so. Then you're done until tomorrow.</p>
+        <p data-i18n="how.s3.body">Every day you write, your plant grows closer to blooming, right in front of you. Hina says so. Then you're done until tomorrow.</p>
       </div>
     </div>
 
@@ -418,7 +419,7 @@ footer .lang { margin-left: auto; }
       <ul class="night-list">
         <li data-i18n="hard.l1">Your plant never wilts, never dies, never resets.</li>
         <li data-i18n="hard.l2">A day you skipped is a soft gray dot on the calendar. Not red, not an X.</li>
-        <li data-i18n="hard.l3">There is no streak counter anywhere in the app. Seven entries, whenever they happen, is what makes a plant bloom.</li>
+        <li data-i18n="hard.l3">There is no streak counter anywhere in the app. Four entries, whenever they happen, make a plant bloom.</li>
       </ul>
       <div class="quote-card">
         <p class="q" data-i18n="hard.q">“Welcome back. Start where you are.”</p>
@@ -436,20 +437,18 @@ footer .lang { margin-left: auto; }
   <div class="wrap">
     <div class="stack">
       <p class="eyebrow" data-i18n="garden.eyebrow">The garden</p>
-      <h2 data-i18n="garden.title">Seven entries. Not seven days in a row.</h2>
-      <p class="lead" data-i18n="garden.lead">Write seven times, whenever they happen, and your plant blooms. Everything you wrote along the way becomes a harvest card in your garden. By winter, the garden looks like your year.</p>
+      <h2 data-i18n="garden.title">Four entries. No streak needed.</h2>
+      <p class="lead" data-i18n="garden.lead">Write on four days, whenever they happen, and your plant blooms. Everything you wrote along the way becomes a harvest card in your garden. By winter, the garden looks like your year.</p>
 
-      <div class="growth" aria-label="The seven stages of a daisy">
+      <div class="growth" aria-label="Four entries from seed to bloom">
         <figure><img src="assets/svg/plant_daisy_s01.svg" alt=""><figcaption data-i18n="stage.0">Seed</figcaption></figure>
         <figure><img src="assets/svg/plant_daisy_s02.svg" alt=""><figcaption data-i18n="stage.1">Sprout</figcaption></figure>
-        <figure><img src="assets/svg/plant_daisy_s03.svg" alt=""><figcaption data-i18n="stage.2">Two leaves</figcaption></figure>
         <figure><img src="assets/svg/plant_daisy_s04.svg" alt=""><figcaption data-i18n="stage.3">Three leaves</figcaption></figure>
-        <figure><img src="assets/svg/plant_daisy_s05.svg" alt=""><figcaption data-i18n="stage.4">Young leaves</figcaption></figure>
         <figure><img src="assets/svg/plant_daisy_s06.svg" alt=""><figcaption data-i18n="stage.5">Bud</figcaption></figure>
         <figure><img src="assets/svg/plant_daisy_s07.svg" alt=""><figcaption data-i18n="stage.6">Bloom</figcaption></figure>
       </div>
 
-      <p style="margin-top:22px;color:var(--ink-2)" data-i18n="garden.kinds">Sixteen basic plants to grow, plus three optional rare plants. Here are a few favorites.</p>
+      <p style="margin-top:22px;color:var(--ink-2)" data-i18n="garden.kinds">Twenty basic plants to grow, plus three optional rare plants. Here are a few favorites.</p>
       <div class="plants">
         <figure><img src="assets/svg/plant_daisy_s07.svg" alt=""><figcaption data-i18n="plant.daisy">Daisy</figcaption></figure>
         <figure><img src="assets/svg/plant_tulip_s07.svg" alt=""><figcaption data-i18n="plant.tulip">Tulip</figcaption></figure>
@@ -462,12 +461,17 @@ footer .lang { margin-left: auto; }
         <figure><img src="assets/svg/plant_camellia_s07.svg" alt=""><figcaption data-i18n="plant.camellia">Camellia</figcaption></figure>
       </div>
 
-      <h3 class="botanical-heading" data-i18n="garden.new.title">Four new plants, from seed onward</h3>
+      <p data-i18n="garden.swaps">Change an unstarted seed three times for free. Botanical Seeds unlocks unlimited changes and three rare plants.</p>
+      <h3 class="botanical-heading" data-i18n="garden.new.title">Eight new plants, from seed onward</h3>
       <div class="botanical-grid">
         <figure><img src="assets/botanical/snowdrop.png" alt="" loading="lazy"><figcaption data-i18n="plant.snowdrop">Snowdrop</figcaption></figure>
         <figure><img src="assets/botanical/osmanthus.png" alt="" loading="lazy"><figcaption data-i18n="plant.osmanthus">Fragrant osmanthus</figcaption></figure>
         <figure><img src="assets/botanical/wild_strawberry.png" alt="" loading="lazy"><figcaption data-i18n="plant.wild_strawberry">Wild strawberry</figcaption></figure>
         <figure><img src="assets/botanical/eucalyptus.png" alt="" loading="lazy"><figcaption data-i18n="plant.eucalyptus">Eucalyptus</figcaption></figure>
+        <figure><div class="atlas" style="background-image:url(assets/botanical/anemone-atlas.png)" role="img" aria-label="Japanese anemone"></div><figcaption data-i18n="plant.anemone">Japanese anemone</figcaption></figure>
+        <figure><div class="atlas" style="background-image:url(assets/botanical/pansy-atlas.png)" role="img" aria-label="Pansy"></div><figcaption data-i18n="plant.pansy">Pansy</figcaption></figure>
+        <figure><div class="atlas" style="background-image:url(assets/botanical/calendula-atlas.png)" role="img" aria-label="Calendula"></div><figcaption data-i18n="plant.calendula">Calendula</figcaption></figure>
+        <figure><div class="atlas" style="background-image:url(assets/botanical/rosemary-atlas.png)" role="img" aria-label="Rosemary"></div><figcaption data-i18n="plant.rosemary">Rosemary</figcaption></figure>
       </div>
 
       <div class="lookback" aria-label="Example of the Look back card">
@@ -630,20 +634,20 @@ var I18N = {
     "how.s2.title": "ひとことで答える。",
     "how.s2.body": "ちょうどいい濃さのコーヒー。洗濯物の上で寝ていた猫。用もなく電話をくれた妹。小さなよかったことを3つ記録して、今日の振り返りを終えましょう。",
     "how.s3.title": "育つのを見る。",
-    "how.s3.body": "書いた日は、植物が目の前で1段階のびます。ヒナがそれを教えてくれます。今日はここまで。また明日。",
+    "how.s3.body": "書いた日は、植物が目の前で開花に近づきます。ヒナがそれを教えてくれます。今日はここまで。また明日。",
     "how.note": "そのあとに1タップだけ、「今の気分は？」。5つの顔とスキップ。どちらを選んでもキャラクターがひとこと返します。",
     "hard.eyebrow": "書きたくない日のために",
     "hard.title": "しんどい日のボタンがあります。",
     "hard.lead": "「今日はしんどい」を押すと、ヒナは目を閉じて、いっしょに休みます。何も書かなくていい。何も減りません。",
     "hard.l1": "植物は枯れない、死なない、リセットされない。",
     "hard.l2": "書かなかった日は、カレンダーの薄いグレーの点。赤でも、×でもありません。",
-    "hard.l3": "連続日数のカウンターは、アプリのどこにもありません。合計7回書けば、いつ書いても花が咲きます。",
+    "hard.l3": "連続日数のカウンターは、アプリのどこにもありません。合計4回書けば、いつ書いても花が咲きます。",
     "hard.q": "「おかえり。ここから、また。」",
     "hard.qs": "数日ぶりに開いたときの挨拶はこれだけ。空いた日数は数えません。",
     "garden.eyebrow": "にわ",
-    "garden.title": "合計7回。7日連続じゃなくていい。",
-    "garden.lead": "いつでもいいから7回書くと、植物が咲きます。そのあいだに書いた良いことは1枚の収穫カードになって、にわに残ります。冬になるころ、にわはあなたの1年の形になっています。",
-    "garden.kinds": "基本の植物は16種類。珍しい3種類は任意の追加購入です。ここでは一部をご紹介。",
+    "garden.title": "合計4回。連続じゃなくていい。",
+    "garden.lead": "いつでもいいから4回書くと、植物が咲きます。そのあいだに書いた良いことは1枚の収穫カードになって、にわに残ります。冬になるころ、にわはあなたの1年の形になっています。",
+    "garden.kinds": "基本の植物は20種類。珍しい3種類は任意の追加購入です。ここでは一部をご紹介。",
     "plant.daisy": "デイジー",
     "plant.tulip": "チューリップ",
     "plant.sakura": "さくら",
@@ -708,9 +712,14 @@ var I18N = {
     "foot.privacy": "プライバシーポリシー",
     "foot.support": "サポート",
     "meta.title": "みつば — 3つのいいことと小さなケア",
-    "meta.description": "今日のいいことを3つ書いて、小さなケアをひとつ。5人のキャラクターと、写実的なタネから育つ16種類の基本植物。連続記録は不要です。",
+    "meta.description": "今日のいいことを3つ書いて、小さなケアをひとつ。5人のキャラクターと、写実的なタネから育つ20種類の基本植物。連続記録は不要です。",
     "nav.care": "小さなケア",
-    "garden.new.title": "写実的なタネから育つ、新しい4種類",
+    "garden.new.title": "写実的なタネから育つ、新しい8種類",
+    "garden.swaps": "成長前のタネは3回まで無料で交換できます。Botanical Seedsを購入すると、交換が無制限になり、珍しい植物3種類も追加されます。",
+    "plant.anemone": "アネモネ",
+    "plant.pansy": "パンジー",
+    "plant.calendula": "キンセンカ",
+    "plant.rosemary": "ローズマリー",
     "plant.snowdrop": "スノードロップ",
     "plant.osmanthus": "金木犀",
     "plant.wild_strawberry": "ワイルドストロベリー",
@@ -759,20 +768,20 @@ var I18N = {
     "how.s2.title": "한 문장으로 대답해요.",
     "how.s2.body": "딱 알맞았던 커피. 따뜻한 빨래 위에서 잠든 고양이. 용건 없이 전화한 동생. 작은 좋은 일 세 가지를 기록하며 오늘을 돌아보세요.",
     "how.s3.title": "자라는 걸 지켜봐요.",
-    "how.s3.body": "쓴 날마다 식물이 눈앞에서 한 단계 자라요. 히나가 알려 줘요. 오늘은 여기까지, 내일 또 만나요.",
+    "how.s3.body": "쓴 날마다 식물이 눈앞에서 꽃에 가까워져요. 히나가 알려 줘요. 오늘은 여기까지, 내일 또 만나요.",
     "how.note": "그 뒤에 딱 한 번, '지금 기분은?' 다섯 개의 얼굴과 건너뛰기 버튼. 무엇을 골라도 친구가 한마디 건네요.",
     "hard.eyebrow": "쓰고 싶지 않은 날을 위해",
     "hard.title": "힘든 날을 위한 버튼이 있어요.",
     "hard.lead": "'오늘은 힘들어요'를 누르면 히나가 눈을 감고 함께 쉬어요. 아무것도 쓰지 않아도 돼요. 아무것도 줄어들지 않아요.",
     "hard.l1": "식물은 시들지도, 죽지도, 초기화되지도 않아요.",
     "hard.l2": "빼먹은 날은 달력의 연한 회색 점일 뿐이에요. 빨간색도, X도 아니에요.",
-    "hard.l3": "연속 일수 카운터는 앱 어디에도 없어요. 언제 쓰든 합쳐서 일곱 번이면 꽃이 피어요.",
+    "hard.l3": "연속 일수 카운터는 앱 어디에도 없어요. 언제 쓰든 합쳐서 네 번이면 꽃이 피어요.",
     "hard.q": "\"다시 만났네요. 지금 여기서부터.\"",
     "hard.qs": "며칠 만에 열었을 때의 인사는 이게 전부예요. 빈 날을 세지 않아요.",
     "garden.eyebrow": "정원",
-    "garden.title": "일곱 번. 7일 연속이 아니어도 돼요.",
-    "garden.lead": "언제든 일곱 번 쓰면 식물이 꽃을 피워요. 그동안 적은 좋은 일은 한 장의 수확 카드가 되어 정원에 남아요. 겨울이 오면 정원은 당신의 한 해를 닮아 있을 거예요.",
-    "garden.kinds": "기본 식물 16종과 선택형 희귀 식물 3종. 그중 몇 가지를 소개해요.",
+    "garden.title": "네 번. 연속이 아니어도 돼요.",
+    "garden.lead": "언제든 네 번 쓰면 식물이 꽃을 피워요. 그동안 적은 좋은 일은 한 장의 수확 카드가 되어 정원에 남아요. 겨울이 오면 정원은 당신의 한 해를 닮아 있을 거예요.",
+    "garden.kinds": "기본 식물 20종과 선택형 희귀 식물 3종. 그중 몇 가지를 소개해요.",
     "plant.daisy": "데이지",
     "plant.tulip": "튤립",
     "plant.sakura": "벚꽃",
@@ -837,9 +846,14 @@ var I18N = {
     "foot.privacy": "개인정보 처리방침",
     "foot.support": "지원",
     "meta.title": "미츠바 — 좋은 일 세 가지와 작은 돌봄",
-    "meta.description": "좋은 일 세 가지를 적고, 오늘의 작은 돌봄을 골라 보세요. 다섯 친구와 사실적인 씨앗에서 자라는 기본 식물 16종. 연속 기록은 필요 없어요.",
+    "meta.description": "좋은 일 세 가지를 적고, 오늘의 작은 돌봄을 골라 보세요. 다섯 친구와 사실적인 씨앗에서 자라는 기본 식물 20종. 연속 기록은 필요 없어요.",
     "nav.care": "작은 돌봄",
-    "garden.new.title": "사실적인 씨앗부터 자라는 새 식물 네 가지",
+    "garden.new.title": "사실적인 씨앗부터 자라는 새 식물 여덟 가지",
+    "garden.swaps": "자라기 전 씨앗은 세 번까지 무료로 바꿀 수 있어요. Botanical Seeds를 구매하면 씨앗 교환이 무제한이고 희귀 식물 세 종류도 추가돼요.",
+    "plant.anemone": "아네모네",
+    "plant.pansy": "팬지",
+    "plant.calendula": "금잔화",
+    "plant.rosemary": "로즈마리",
     "plant.snowdrop": "스노드롭",
     "plant.osmanthus": "금목서",
     "plant.wild_strawberry": "와일드 스트로베리",
@@ -888,20 +902,20 @@ var I18N = {
     "how.s2.title": "用一句話回答。",
     "how.s2.body": "濃度剛剛好的咖啡。睡在溫熱衣物上的貓。沒事也打電話來的妹妹。記錄三件小小的好事，完成今天的回顧。",
     "how.s3.title": "看著它長大。",
-    "how.s3.body": "每寫一天，植物就在你眼前長大一階。Hina 會告訴你。今天到此為止，明天見。",
+    "how.s3.body": "每寫一天，植物就在你眼前更接近開花。Hina 會告訴你。今天到此為止，明天見。",
     "how.note": "之後只有一次輕點：現在心情如何？五張臉和一個「略過」。不管選哪個，夥伴都會回你一句。",
     "hard.eyebrow": "留給不想寫的日子",
     "hard.title": "有一顆給難熬日子的按鈕。",
     "hard.lead": "點「今天很累」，Hina 會閉上眼睛陪你休息。不用寫任何東西，也不會失去任何東西。",
     "hard.l1": "植物不會枯萎、不會死、不會重來。",
     "hard.l2": "漏掉的那天，只是月曆上一個淡灰色的點。不是紅色，也不是叉。",
-    "hard.l3": "App 裡沒有任何連續天數的計數器。不管什麼時候寫，總共七次就會開花。",
+    "hard.l3": "App 裡沒有任何連續天數的計數器。不管什麼時候寫，總共四次就會開花。",
     "hard.q": "「歡迎回來。就從現在開始。」",
     "hard.qs": "隔了幾天再打開，問候就只有這句。它不數你空了幾天。",
     "garden.eyebrow": "花園",
-    "garden.title": "總共七次，不必連續七天。",
-    "garden.lead": "隨時寫滿七次，植物就會開花。這段期間寫下的好事會變成一張收穫卡，留在花園裡。到了冬天，花園就是你這一年的樣子。",
-    "garden.kinds": "16種基本植物，另有3種可選購的珍稀植物。這裡介紹其中幾種。",
+    "garden.title": "總共四次，不必連續記錄。",
+    "garden.lead": "隨時寫滿四次，植物就會開花。這段期間寫下的好事會變成一張收穫卡，留在花園裡。到了冬天，花園就是你這一年的樣子。",
+    "garden.kinds": "20種基本植物，另有3種可選購的珍稀植物。這裡介紹其中幾種。",
     "plant.daisy": "雛菊",
     "plant.tulip": "鬱金香",
     "plant.sakura": "櫻花",
@@ -966,9 +980,14 @@ var I18N = {
     "foot.privacy": "隱私權政策",
     "foot.support": "支援",
     "meta.title": "三葉草 — 三件好事與一件小照顧",
-    "meta.description": "寫下三件好事，選做一件小照顧。五位夥伴、從寫實種子長大的16種基本植物，不必維持連續紀錄。",
+    "meta.description": "寫下三件好事，選做一件小照顧。五位夥伴、從寫實種子長大的20種基本植物，不必維持連續紀錄。",
     "nav.care": "小照顧",
-    "garden.new.title": "從寫實種子長大的四種新植物",
+    "garden.new.title": "從寫實種子長大的八種新植物",
+    "garden.swaps": "尚未成長的種子可免費更換三次。購買 Botanical Seeds 後可無限次更換，並新增三種珍稀植物。",
+    "plant.anemone": "秋牡丹",
+    "plant.pansy": "三色堇",
+    "plant.calendula": "金盞花",
+    "plant.rosemary": "迷迭香",
     "plant.snowdrop": "雪滴花",
     "plant.osmanthus": "桂花",
     "plant.wild_strawberry": "野草莓",
@@ -999,7 +1018,7 @@ var I18N = {
 };
 I18N["en"] = {
   "meta.title": "Mitsuba — Three good things and a little care",
-  "meta.description": "Write three good things, choose a small act of care, and grow a garden with five companions. Sixteen basic plants, no streaks or guilt."
+  "meta.description": "Write three good things, choose a small act of care, and grow a garden with five companions. Twenty basic plants, no streaks or guilt."
 };
 
 var SOON = { "en": "Coming soon to the App Store", "ja": "まもなく App Store に登場", "ko": "곧 App Store에서 만나요", "zh-Hant": "即將在 App Store 推出" };
