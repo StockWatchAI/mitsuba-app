@@ -54,14 +54,17 @@ footer { margin-top: 64px; color: var(--mist); font-size: 13px; }
   </nav>
 
   <h2 id="ja">日本語</h2>
-  <p class="updated">最終更新日：2026年10月3日</p>
+  <p class="updated">最終更新日：2026年11月1日</p>
   <div class="card">
     <p>みつばは日記を端末内に保存します。クラウドAIは任意の機能で、同意した場合だけ文章をAWSへ送信します。以下のクラウドAIに関する説明は2.1.0（ビルド9）以降に適用します。以前の端末内AIの同意を、外部送信への同意として扱うことはありません。</p>
     <h3>保存する情報</h3>
-    <p>日記本文、気分、日付、写真、植物、お便り、小さなケアの履歴は端末内のデータベースに保存します。氏名や連絡先を入力する会員登録はありません。位置情報・連絡先・写真ライブラリ全体を取得しません。利用者自身が日記や会話に個人情報を書く場合、その文章もAI送信の対象となり得ます。</p>
+    <p>日記本文、気分、日付、写真、植物、お便り、小さなケアの履歴は端末内のデータベースに保存します。氏名や連絡先を入力する会員登録はありません。位置情報・連絡先・写真ライブラリ全体を取得しません。利用者自身がAIで話題にする「3つのいいこと」や会話に個人情報を書く場合、その文章もAI送信の対象となり得ます。「こころのノート」は以下のとおりAI送信の対象から除外します。</p>
+    <h3>こころのノートとアプリロック</h3>
+    <p>2.8.0（ビルド23）以降の「こころのノート」では、選んだテーマ・気持ち・気になること・今の自分にしてあげたいこと・日付を端末内に保存します。AI会話や週のお便りには送信せず、インターネット接続やAIへの同意なしで利用できます。JSON・テキスト書き出しにはノートの内容を含むため、共有先や書き出したファイルはご自身で管理してください。ノートは個別に編集・削除でき、「ぜんぶ消す」でも削除されます。ノートを個別に削除しても、同じ日の重複成長を防ぐため、本文を含まない成長日の記録（日付のみ）は端末内に残ります。「ぜんぶ消す」ではこの日付も削除します。</p>
+    <p>任意のアプリロックにはAppleのLocalAuthenticationを使い、Face ID・Touch IDまたは端末のパスコードで認証します。認証情報や生体情報をみつばの開発者やサーバーが受け取ることはありません。ロックの有効・無効の設定は端末内に保存します。アプリロックはアプリへのアクセスを制限するもので、書き出し済みのファイルや共有先の情報を保護するものではありません。</p>
     <h3>任意のクラウドAI</h3>
     <p>会話の返事と週のお便りを作るため、文章をみつばの中継サーバーとAmazon Web Services（AWS）のBedrockへ送ります。日本国内のAWSリージョンで処理します。</p>
-    <p>会話では入力文・直近の会話・話題にした記録、お便りでは選んだ週の記録本文と日付を送ります。表示言語とキャラも送ります。写真、気分の点数、ケア履歴は送りません。</p>
+    <p>会話では入力文・直近の会話・話題にした記録、お便りでは選んだ週の記録本文と日付を送ります。表示言語とキャラも送ります。写真、気分の点数、ケア履歴、こころのノートは送りません。</p>
     <p>中継サーバーでは本文と返答を保存しません。不正利用防止のため匿名の認証IDを使い、IDのハッシュと利用回数を短期間保存します。AIは間違うことがあります。利用にはインターネット接続が必要です。</p>
     <p>お便りの自動作成は別の設定です。有効な場合はアプリを開いたときに対象週の文章を送ります。設定でクラウドAIをオフにすると、その後の送信を止められます。</p>
     <h3>処理・保持・セキュリティ</h3>
@@ -81,14 +84,17 @@ footer { margin-top: 64px; color: var(--mist); font-size: 13px; }
   </div>
 
   <h2 id="en">English</h2>
-  <p class="updated">Last updated: October 3, 2026</p>
+  <p class="updated">Last updated: November 1, 2026</p>
   <div class="card">
     <p>Mitsuba stores your journal on your device. Cloud AI is optional and sends text to AWS only after you agree. The cloud AI terms below apply to version 2.1.0 (build 9) and later. Previous consent to on-device AI does not authorize cloud transmission.</p>
     <h3>Stored information</h3>
-    <p>Journal text, mood, dates, photos, plants, letters and small care history are stored in the device database. There is no account registration requiring your name or contact details. We do not access location, contacts or the full photo library. Personal information you choose to include in a journal or conversation may be included in text you send to AI.</p>
+    <p>Journal text, mood, dates, photos, plants, letters and small care history are stored in the device database. There is no account registration requiring your name or contact details. We do not access location, contacts or the full photo library. Personal information you include in a three-good-things entry discussed with AI or in an AI conversation may be included in the text sent. Mind Notes are excluded as described below.</p>
+    <h3>Mind Notes and app lock</h3>
+    <p>In version 2.8.0 (build 23) and later, Mind Notes save your selected theme, emotions, concerns, what you want to do for yourself, and dates on your device. They are not sent to AI chat or weekly letters and work without an internet connection or AI consent. JSON and text exports include Mind Notes, so you are responsible for exported files and their sharing destinations. You can edit or delete individual notes; “Delete everything” also removes them. Deleting an individual note keeps a content-free growth receipt (the date only) on your device to prevent duplicate growth on the same day. “Delete everything” removes these dates too.</p>
+    <p>Optional app lock uses Apple LocalAuthentication with Face ID, Touch ID, or your device passcode. Mitsuba&#x27;s developer and servers do not receive authentication secrets or biometric data. The lock preference is saved on your device. App lock restricts access to the app; it does not protect files already exported or information shared elsewhere.</p>
     <h3>Optional cloud AI</h3>
     <p>To create replies and weekly letters, text is sent to Mitsuba’s gateway and Amazon Bedrock, provided by Amazon Web Services (AWS). Processing takes place in AWS regions in Japan.</p>
-    <p>Chat sends your message, recent conversation and the journal text being discussed. Letters send the selected week’s journal text and dates. Your language and character selection are also sent. Photos, mood scores and small care history are not sent.</p>
+    <p>Chat sends your message, recent conversation and the journal text being discussed. Letters send the selected week’s journal text and dates. Your language and character selection are also sent. Photos, mood scores, small care history and Mind Notes are not sent.</p>
     <p>Our gateway does not store message text or replies. An anonymous authentication ID is used to prevent misuse; a hash of that ID and usage counts are stored briefly. AI can make mistakes. An internet connection is required.</p>
     <p>Automatic weekly letters are a separate setting. When enabled, the selected week’s text is sent when you open the app. Turn off cloud AI in Settings to stop future requests.</p>
     <h3>Processing, retention and security</h3>
@@ -108,14 +114,17 @@ footer { margin-top: 64px; color: var(--mist); font-size: 13px; }
   </div>
 
   <h2 id="ko">한국어</h2>
-  <p class="updated">최종 업데이트: 2026년 10월 3일</p>
+  <p class="updated">최종 업데이트: 2026년 11월 1일</p>
   <div class="card">
     <p>미츠바는 일기를 기기에 저장합니다. 클라우드 AI는 선택 기능이며 동의한 경우에만 글을 AWS로 전송합니다. 아래 클라우드 AI 설명은 2.1.0(빌드 9) 이후에 적용됩니다. 이전 기기 내 AI 동의는 외부 전송 동의로 취급하지 않습니다.</p>
     <h3>저장 정보</h3>
-    <p>일기 내용, 기분, 날짜, 사진, 식물, 편지와 작은 돌봄 기록은 기기 데이터베이스에 저장합니다. 이름이나 연락처를 요구하는 회원 가입은 없습니다. 위치, 연락처, 전체 사진 보관함은 가져오지 않습니다. 이용자가 일기나 대화에 직접 적은 개인정보는 AI에 전송하는 글에 포함될 수 있습니다.</p>
+    <p>일기 내용, 기분, 날짜, 사진, 식물, 편지와 작은 돌봄 기록은 기기 데이터베이스에 저장합니다. 이름이나 연락처를 요구하는 회원 가입은 없습니다. 위치, 연락처, 전체 사진 보관함은 가져오지 않습니다. AI와 이야기하는 좋은 일 세 가지 기록이나 대화에 직접 적은 개인정보는 AI에 보내는 글에 포함될 수 있습니다. 마음 노트는 아래 설명과 같이 전송 대상에서 제외합니다.</p>
+    <h3>마음 노트와 앱 잠금</h3>
+    <p>2.8.0(빌드 23) 이후의 마음 노트는 선택한 주제, 감정, 마음에 걸리는 일, 나를 위해 하고 싶은 일과 날짜를 기기에 저장합니다. AI 대화나 주간 편지에는 전송하지 않으며 인터넷 연결이나 AI 동의 없이 사용할 수 있습니다. JSON과 텍스트 내보내기에는 마음 노트도 포함되므로 내보낸 파일과 공유 대상은 직접 관리해 주세요. 노트를 개별 수정·삭제할 수 있고, ‘전부 삭제’로도 지울 수 있습니다. 개별 노트를 삭제해도 같은 날 중복 성장을 막기 위해 내용 없는 성장 기록(날짜만)은 기기에 남습니다. ‘전부 삭제’는 이 날짜도 지웁니다.</p>
+    <p>선택형 앱 잠금은 Apple LocalAuthentication을 통해 Face ID, Touch ID 또는 기기 암호로 인증합니다. 미츠바 개발자나 서버는 인증 비밀정보나 생체정보를 받지 않습니다. 잠금 설정은 기기에 저장합니다. 앱 잠금은 앱 접근을 제한하며, 이미 내보낸 파일이나 다른 곳에 공유한 정보는 보호하지 않습니다.</p>
     <h3>선택적인 클라우드 AI</h3>
     <p>대화 답장과 주간 편지를 만들기 위해 글을 미츠바 중계 서버와 Amazon Web Services(AWS)의 Amazon Bedrock으로 보냅니다. 일본 내 AWS 리전에서 처리합니다.</p>
-    <p>대화에서는 입력한 글, 최근 대화, 이야기 중인 기록을 보냅니다. 편지에서는 선택한 주의 기록 내용과 날짜를 보냅니다. 표시 언어와 캐릭터도 전송합니다. 사진, 기분 점수와 작은 돌봄 기록은 보내지 않습니다.</p>
+    <p>대화에서는 입력한 글, 최근 대화, 이야기 중인 기록을 보냅니다. 편지에서는 선택한 주의 기록 내용과 날짜를 보냅니다. 표시 언어와 캐릭터도 전송합니다. 사진, 기분 점수, 작은 돌봄 기록과 마음 노트는 보내지 않습니다.</p>
     <p>중계 서버는 본문과 답장을 저장하지 않습니다. 오용 방지를 위해 익명 인증 ID를 사용하고, ID의 해시와 이용 횟수를 짧은 기간 보관합니다. AI는 틀릴 수 있으며 인터넷 연결이 필요합니다.</p>
     <p>주간 편지 자동 생성은 별도 설정입니다. 켜 두면 앱을 열 때 해당 주의 글을 보냅니다. 설정에서 클라우드 AI를 끄면 이후 전송을 멈출 수 있어요.</p>
     <h3>처리, 보관 및 보안</h3>
@@ -135,14 +144,17 @@ footer { margin-top: 64px; color: var(--mist); font-size: 13px; }
   </div>
 
   <h2 id="zh">繁體中文</h2>
-  <p class="updated">最後更新：2026年10月3日</p>
+  <p class="updated">最後更新：2026年11月1日</p>
   <div class="card">
     <p>Mitsuba 將日記儲存在裝置上。雲端 AI 為選用功能，僅在同意後將文字傳送至 AWS。以下雲端 AI 說明適用於 2.1.0（組建 9）及之後版本。過去對裝置端 AI 的同意不會視為外部傳送的同意。</p>
     <h3>儲存的資訊</h3>
-    <p>日記文字、心情、日期、照片、植物、來信及小小照顧紀錄儲存在裝置資料庫。不需要提供姓名或聯絡資料註冊帳號，也不存取位置、聯絡人或整個照片圖庫。你自行寫在日記或對話中的個人資料，可能包含在傳送給 AI 的文字中。</p>
+    <p>日記文字、心情、日期、照片、植物、來信及小小照顧紀錄儲存在裝置資料庫。不需要提供姓名或聯絡資料註冊帳號，也不存取位置、聯絡人或整個照片圖庫。你寫在與 AI 討論的三件好事或對話中的個人資料，可能包含在傳送給 AI 的文字中。心情筆記依下述說明排除於傳送範圍之外。</p>
+    <h3>心情筆記與 App 鎖定</h3>
+    <p>2.8.0（組建 23）及之後版本的心情筆記，會將選擇的主題、情緒、在意的事、想為自己做的事及日期儲存在裝置上。不會傳送給 AI 對話或每週來信，不需網路連線或 AI 同意即可使用。JSON 與文字匯出均包含心情筆記，請自行管理匯出的檔案及分享對象。筆記可個別編輯或刪除，「全部刪除」也會移除筆記。個別刪除筆記後，裝置上仍會保留不含內容的成長紀錄（僅日期），以避免同一天重複成長。「全部刪除」也會移除這些日期。</p>
+    <p>選用的 App 鎖定透過 Apple LocalAuthentication，使用 Face ID、Touch ID 或裝置密碼驗證。Mitsuba 開發者及伺服器不會收到驗證秘密資訊或生物辨識資料。鎖定偏好儲存在裝置上。App 鎖定限制對 App 的存取，不保護已匯出的檔案或已分享至其他地方的資訊。</p>
     <h3>選用的雲端 AI</h3>
     <p>為了產生聊天回覆與每週來信，文字會傳送至 Mitsuba 的中繼伺服器及 Amazon Web Services（AWS）的 Amazon Bedrock，並在日本境內的 AWS 區域處理。</p>
-    <p>聊天時會傳送你輸入的文字、近期對話及討論中的日記。來信則會傳送所選週的日記文字與日期，也會傳送顯示語言與角色選擇。不會傳送照片、心情分數或小小照顧紀錄。</p>
+    <p>聊天時會傳送你輸入的文字、近期對話及討論中的日記。來信則會傳送所選週的日記文字與日期，也會傳送顯示語言與角色選擇。不會傳送照片、心情分數、小小照顧紀錄或心情筆記。</p>
     <p>中繼伺服器不儲存本文與回覆。為防止濫用，我們會使用匿名驗證 ID，並短期保留 ID 的雜湊值與使用次數。AI 可能出錯，使用時需要網路連線。</p>
     <p>每週來信自動生成功能需另外設定。啟用後，開啟 App 時會傳送該週的文字。在設定中關閉雲端 AI，即可停止之後的傳送。</p>
     <h3>處理、保留與安全</h3>
@@ -165,3 +177,4 @@ footer { margin-top: 64px; color: var(--mist); font-size: 13px; }
 </main>
 </body>
 </html>
+
